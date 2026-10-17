@@ -1,0 +1,14 @@
+{
+  // Cloudflare Worker settings for starvechaos.com
+  "name": "starvechaos",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-13",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    // Only these paths run the password code; the rest is served straight from ./public.
+    "run_worker_first": ["/book/*", "/class/*", "/api/*"]
+  },
+  "observability": { "enabled": true }
+}
