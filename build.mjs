@@ -3,7 +3,7 @@
 import { mkdirSync, writeFileSync, rmSync, readFileSync, cpSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { site, sections, parts } from "./src/config.mjs";
-import { homePage } from "./src/home.mjs";
+import { homePage, aboutPage } from "./src/home.mjs";
 
 const OUT = "public";
 rmSync(OUT, { recursive: true, force: true });
@@ -141,16 +141,8 @@ write("/open/", page({
 `,
 }));
 
-/* ---------- About ---------- */
-write("/about/", page({
-  path: "/about/",
-  title: "About",
-  body: `
-<p class="kicker">About</p>
-<h1>${esc(site.author)}</h1>
-<div class="placeholder">Bio coming soon.</div>
-`,
-}));
+/* ---------- About (full-bleed, shares the bio with the homepage) ---------- */
+write("/about/", aboutPage());
 
 /* ---------- Login ---------- */
 write("/login/", page({
