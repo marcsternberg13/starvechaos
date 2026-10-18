@@ -1,11 +1,11 @@
 /* Mobile-first. No web fonts or images, so pages load fast on phone data. */
 :root {
-  --paper: #f5f0e6;
+  --paper: #F4EFE6;
   --card: #fffdf8;
-  --ink: #1c1a16;
+  --ink: #16130F;
   --muted: #6b655a;
   --line: #ddd4c3;
-  --accent: #b8321c;
+  --accent: #C8401E;
   --accent-ink: #ffffff;
   --ok: #2f6b3a;
   --radius: 10px;

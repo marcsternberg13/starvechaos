@@ -3,6 +3,7 @@
 import { mkdirSync, writeFileSync, rmSync, readFileSync, cpSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { site, sections, parts } from "./src/config.mjs";
+import { homePage } from "./src/home.mjs";
 
 const OUT = "public";
 rmSync(OUT, { recursive: true, force: true });
@@ -33,7 +34,7 @@ function page({ path, title, description = site.tagline, body, area }) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(fullTitle)}</title>
 <meta name="description" content="${esc(description)}">
-<meta name="theme-color" content="#b8321c">
+<meta name="theme-color" content="#16130F">
 ${area ? '<meta name="robots" content="noindex">' : ""}
 <link rel="stylesheet" href="/styles.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -68,7 +69,7 @@ function sectionList(area) {
       out += `<li><a class="sec" href="/${area}/${s.slug}/">
 <span class="num">${s.slug}</span>
 <span class="t">${esc(s.title)}<span class="th">${esc(s.theme)}</span></span>
-<span class="lock" aria-label="Password required">🔒</span>
+<span class="lock" aria-label="Password required">LOCKED</span>
 </a></li>`;
     }
     out += `</ul>`;
@@ -76,42 +77,16 @@ function sectionList(area) {
   return out;
 }
 
-/* ---------- Home ---------- */
-write("/", page({
-  path: "/",
-  body: `
-<section class="hero">
-<p class="kicker">${esc(site.bookSubtitle)}</p>
-<h1>Hunger. Curiosity. <em>Chaos.</em></h1>
-<p class="lede">${esc(site.tagline)}</p>
-<ul class="forces" aria-label="The three forces">
-<li>Hunger: the drive to build</li>
-<li>Curiosity: the need to understand</li>
-<li>Chaos: the world that won't hold still</li>
-</ul>
-<div class="actions">
-<a class="btn" href="/class/">I'm a student</a>
-<a class="btn ghost" href="/book/">Read the book</a>
-</div>
-</section>
-
-<h2>What's here</h2>
-<ul class="cards two">
-<li><a class="card" href="/book/"><h3>The book</h3><p>101 principles in 12 sections. Each chapter opens with its own password.</p></a></li>
-<li><a class="card" href="/class/"><h3>The class</h3><p>Lessons, exercises and assignments, released chapter by chapter.</p></a></li>
-<li><a class="card" href="/open/"><h3>Open notes</h3><p>Free ideas and tools, no password needed.</p></a></li>
-<li><a class="card" href="/about/"><h3>About Marc</h3><p>Who wrote this, and why.</p></a></li>
-</ul>
-`,
-}));
+/* ---------- Home (its own full-bleed design, see src/home.mjs) ---------- */
+write("/", homePage());
 
 /* ---------- Book + Class indexes and chapter pages ---------- */
 const areas = {
   book: {
     label: "The book",
     title: `${site.bookTitle}`,
-    intro: "Twelve sections, 101 principles. Each chapter has its own password, shared when it is ready.",
-    chapterNote: "The principles for this section will appear here.",
+    intro: "Twelve sections, 101 rules. Each chapter has its own password, shared when it is ready.",
+    chapterNote: "The rules for this section will appear here.",
   },
   class: {
     label: "The class",
@@ -218,11 +193,12 @@ writeFileSync(join(OUT, "404.html"), page({
 
 /* ---------- Static assets ---------- */
 writeFileSync(join(OUT, "styles.css"), readFileSync("src/styles.css"));
+writeFileSync(join(OUT, "home.css"), readFileSync("src/home.css"));
 writeFileSync(join(OUT, "favicon.svg"),
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#b8321c"/><text x="16" y="23" font-family="Georgia,serif" font-size="20" font-weight="700" text-anchor="middle" fill="#fff">S</text></svg>`);
+  `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="6" fill="#16130F"/><circle cx="14" cy="14" r="9" fill="#C8401E"/><circle cx="27" cy="27" r="7" fill="none" stroke="#17707A" stroke-width="3.5" stroke-dasharray="34 10" transform="rotate(-50 27 27)"/><polygon points="28,4 36,6 31,12" fill="#E2A52B"/><polygon points="6,30 12,28 10,36" fill="#E2A52B"/></svg>`);
 writeFileSync(join(OUT, "robots.txt"), "User-agent: *\nDisallow: /book/*/\nDisallow: /class/*/\nDisallow: /login/\n");
 writeFileSync(join(OUT, "_headers"),
-  `/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: DENY\n/styles.css\n  Cache-Control: public, max-age=3600\n`);
+  `/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: DENY\n/styles.css\n  Cache-Control: public, max-age=3600\n/home.css\n  Cache-Control: public, max-age=3600\n/img/*\n  Cache-Control: public, max-age=604800\n/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n`);
 if (existsSync("static")) cpSync("static", OUT, { recursive: true });
 
 console.log(`Built ${OUT}/`);
