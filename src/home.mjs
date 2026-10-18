@@ -92,7 +92,7 @@ const awards = [
   ["2025", "Oxford Sa&iuml;d Business School", "Director's Award", "Executive Diploma in Strategy and Innovation.", true],
   ["2008", "Arizona State University", "Most Outstanding Graduate", "College of Letters and Sciences.", false],
   ["2024", "Finish Line Script Competition", "Honorable Mention", "For the TV pilot <i>SITA: Spies in the Air</i>.", false],
-  ["JUK", "Producer", "ASC Heritage Award", "Plus an Out on Film grant and a PBS Fine Cut semifinal spot for the short film <i>JUK</i>.", false],
+  ["2026", "Producer &middot; <i>JUK</i> (short film)", "ASC Heritage Award", "Plus an Out on Film grant and a PBS Fine Cut semifinal spot for the short film <i>JUK</i>. It's currently on the film festival circuit, with other awards still to come.", false],
 ];
 
 // [abbreviation, field, school, note, year]
