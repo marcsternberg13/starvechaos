@@ -84,15 +84,15 @@ const acts = [
 ];
 
 // The record: awards, degrees and work. About shows everything; the homepage shows `home: true` items.
-// [year, organization, award, detail, showOnHome]
+// Newest first. [year, organization, award, detail, showOnHome, "hot" = set in ember]
 const awards = [
-  ["2008", "Kauffman Foundation", "Entrepreneurial Advantage Award", "For the business plan behind his first company.", true],
-  ["2018", "Walmart", "Supplier of the Year", "Won while leading e-commerce for a U.S. manufacturer.", true],
-  ["2024", "U.S. Department of State", "Fulbright Specialist", "Selected for the roster in media production, marketing and entrepreneurship.", true],
-  ["2025", "Oxford Sa&iuml;d Business School", "Director's Award", "Executive Diploma in Strategy and Innovation.", true],
-  ["2008", "Arizona State University", "Most Outstanding Graduate", "College of Letters and Sciences.", false],
-  ["2024", "Finish Line Script Competition", "Honorable Mention", "For the TV pilot <i>SITA: Spies in the Air</i>.", false],
   ["2026", "Producer &middot; <i>JUK</i> (short film)", "ASC Heritage Award", "Plus an Out on Film grant and a PBS Fine Cut semifinal spot for the short film <i>JUK</i>. It's currently on the film festival circuit, with other awards still to come.", false],
+  ["2025", "Oxford Sa&iuml;d Business School", "Director's Award", "Executive Diploma in Strategy and Innovation.", true],
+  ["2024", "U.S. Department of State", "Fulbright Specialist", "Selected for the roster in media production, marketing and entrepreneurship.", true],
+  ["2024", "Finish Line Script Competition", "Honorable Mention", "For the TV pilot <i>SITA: Spies in the Air</i>.", false],
+  ["2018", "Walmart", "Supplier of the Year", "Won while leading e-commerce for a U.S. manufacturer.", true, "hot"],
+  ["2008", "Kauffman Foundation", "Entrepreneurial Advantage Award", "For the business plan behind his first company.", true, "hot"],
+  ["2008", "Arizona State University", "Most Outstanding Graduate", "College of Letters and Sciences.", false],
 ];
 
 // [abbreviation, field, school, note, year]
@@ -125,7 +125,7 @@ const work = [
   ]],
 ];
 
-const awardRow = ([y, org, name, detail]) => `<li>
+const awardRow = ([y, org, name, detail, , hot]) => `<li${hot ? ' class="hot"' : ""}>
 <span class="yr">${y}</span>
 <span class="org">${org}</span>
 <span class="aw">${name}</span>
