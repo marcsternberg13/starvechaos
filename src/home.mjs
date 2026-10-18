@@ -83,51 +83,93 @@ const acts = [
     "Then he went back to his first love: film. A producer is the entrepreneur of a film: the one who raises the money, hires the team, signs the contracts and carries the risk. He earned an MFA in producing, self-funded his first documentary, won an investor, and built Son of a Botanist Productions into a slate of 29 projects. His feature documentary <i>Cowgirls: Women of Western Art</i> is narrated by Red Steagall."],
 ];
 
-// Credentials, grouped. The About page shows every group; the homepage shows `highlights` only.
-const credGroups = [
-  ["Awards and honors", [
-    "Kauffman Foundation Entrepreneurial Advantage Award, 2008",
-    "Walmart Supplier of the Year, 2018, as e-commerce lead for a U.S. manufacturer",
-    "Director's Award, Executive Diploma in Strategy and Innovation, Oxford Sa&iuml;d Business School, 2025",
-    "Most Outstanding Graduate, Arizona State University, 2008",
-    "Honorable Mention, Finish Line Script Competition, for the TV pilot <i>SITA: Spies in the Air</i>, 2024",
-    "Producer of <i>JUK</i>: ASC Heritage Award, Out on Film grant, PBS Fine Cut semifinalist",
-  ]],
-  ["Education", [
-    "MSc, Change Leadership, HEC Paris and University of Oxford (in progress)",
-    "Executive Diploma, Strategy and Innovation, University of Oxford, Sa&iuml;d Business School",
-    "MFA, Producing for Film and Television, Chapman University",
-    "Undergraduate Diploma, Creative Writing (Screenwriting), University of Oxford",
-    "MBA, University of Arizona, Eller College of Management, with an international residency in Buenos Aires and Rio de Janeiro",
-    "MA, Administration (Leadership), Northern Arizona University",
-    "BA, Interdisciplinary Studies (Business and Communications), Arizona State University",
-  ]],
+// The record: awards, degrees and work. About shows everything; the homepage shows `home: true` items.
+// [year, organization, award, detail, showOnHome]
+const awards = [
+  ["2008", "Kauffman Foundation", "Entrepreneurial Advantage Award", "For the business plan behind his first company.", true],
+  ["2018", "Walmart", "Supplier of the Year", "Won while leading e-commerce for a U.S. manufacturer.", true],
+  ["2024", "U.S. Department of State", "Fulbright Specialist", "Selected for the roster in media production, marketing and entrepreneurship.", true],
+  ["2025", "Oxford Sa&iuml;d Business School", "Director's Award", "Executive Diploma in Strategy and Innovation.", true],
+  ["2008", "Arizona State University", "Most Outstanding Graduate", "College of Letters and Sciences.", false],
+  ["2024", "Finish Line Script Competition", "Honorable Mention", "For the TV pilot <i>SITA: Spies in the Air</i>.", false],
+  ["JUK", "Producer", "ASC Heritage Award", "Plus an Out on Film grant and a PBS Fine Cut semifinal spot for the short film <i>JUK</i>.", false],
+];
+
+// [abbreviation, field, school, note, year]
+const degrees = [
+  ["MSc", "Change Leadership", "HEC Paris and University of Oxford", "In progress", "2027"],
+  ["Dip", "Strategy and Innovation", "University of Oxford, Sa&iuml;d Business School", "Executive Diploma &middot; Director's Award", "2026"],
+  ["MFA", "Producing for Film and Television", "Chapman University", "", "2026"],
+  ["Dip", "Creative Writing (Screenwriting)", "University of Oxford", "Undergraduate Diploma", "2024"],
+  ["MBA", "Business Administration", "University of Arizona, Eller College of Management", "International residency in Buenos Aires and Rio de Janeiro", "2011"],
+  ["MA", "Administration (Leadership)", "Northern Arizona University", "", "2010"],
+  ["BA", "Interdisciplinary Studies (Business and Communications)", "Arizona State University", "Most Outstanding Graduate", "2008"],
+];
+
+// [group, [[headline, detail], ...]]
+const work = [
   ["Business", [
-    "Fulbright Specialist, U.S. Department of State",
-    "Consultant to Adobe, ShoreTel and Cisco",
-    "Built and led digital teams abroad, and ran a global e-commerce P&amp;L across the Americas, Europe and Asia",
-    "Founder of more than fifteen ventures; first company sold at 23",
+    ["15+ ventures founded", "First company sold at 23."],
+    ["Global e-commerce P&amp;L", "Built and led digital teams abroad, and ran e-commerce across the Americas, Europe and Asia."],
+    ["Consultant to Adobe, ShoreTel and Cisco", "Big-company clients, early in his years as an intrapreneur."],
   ]],
   ["Film and television", [
-    "Founder and producer, Son of a Botanist Productions",
-    "Writer, producer and director, <i>Cowgirls: Women of Western Art</i>, a feature documentary narrated by Red Steagall",
-    "Producer of a Hollywood symposium and awards show on AI and entertainment, held at the Academy Awards building and Sony's Hollywood campus, 2025",
+    ["Son of a Botanist Productions", "Founder and producer. A slate of 29 film and TV projects."],
+    ["<i>Cowgirls: Women of Western Art</i>", "Writer, producer and director. A feature documentary narrated by Red Steagall."],
+    ["Hollywood AI awards show", "Producer of a symposium and awards show on AI and entertainment, at the Academy Awards building and Sony's Hollywood campus, 2025."],
   ]],
   ["Service", [
-    "Taught English abroad, 2006",
-    "Team leader, Habitat for Humanity: five houses built",
-    "Orphanage volunteer, Kenya",
+    ["Teacher abroad", "Taught English, 2006."],
+    ["Habitat for Humanity", "Team leader. Five houses built."],
+    ["Orphanage volunteer", "Kenya."],
   ]],
 ];
 
-const highlights = [
-  ["Award", "Kauffman Foundation Entrepreneurial Advantage Award, 2008"],
-  ["Award", "Walmart Supplier of the Year, 2018"],
-  ["Teaching", "Fulbright Specialist, U.S. Department of State"],
-  ["Film", "<i>Cowgirls: Women of Western Art</i>, narrated by Red Steagall"],
-  ["Study", "MBA, University of Arizona &middot; MA, Northern Arizona University &middot; BA, Arizona State University"],
-  ["Study", "MFA, Chapman University &middot; Oxford Sa&iuml;d Business School &middot; HEC Paris"],
-];
+const awardRow = ([y, org, name, detail]) => `<li>
+<span class="yr">${y}</span>
+<span class="org">${org}</span>
+<span class="aw">${name}</span>
+<span class="ad">${detail}</span>
+</li>`;
+
+function record(full) {
+  const list = full ? awards : awards.filter((a) => a[4]);
+  const degreeList = full
+    ? `<ol class="degrees">
+${degrees.map(([ab, field, school, note, yr]) => `<li>
+<span class="dg">${ab}</span>
+<span class="df">${field}</span>
+<span class="ds">${school}</span>
+<span class="dn">${[note, yr].filter(Boolean).join(" &middot; ")}</span>
+</li>`).join("\n")}
+</ol>`
+    : `<ul class="degree-strip">
+${degrees.filter(([ab]) => ab !== "Dip").map(([ab, , school]) => `<li><b>${ab}</b><span>${school.split(",")[0]}</span></li>`).join("\n")}
+<li><b>Dip</b><span>University of Oxford (two)</span></li>
+</ul>`;
+  return `<section class="record" aria-labelledby="rec-h">
+<p class="eyebrow dark">The record</p>
+<h2 id="rec-h" class="rec-title">Proof<br>of work.</h2>
+
+<div class="rec-block">
+<h3 class="rec-sub"><span>01</span>Awards and honors</h3>
+<ol class="awards">
+${list.map(awardRow).join("\n")}
+</ol>
+</div>
+
+<div class="rec-block">
+<h3 class="rec-sub"><span>02</span>Education</h3>
+${degreeList}
+</div>
+${full ? work.map(([g, items], i) => `<div class="rec-block">
+<h3 class="rec-sub"><span>0${i + 3}</span>${g}</h3>
+<ul class="work">
+${items.map(([h, d]) => `<li><span class="wh">${h}</span><span class="wd">${d}</span></li>`).join("\n")}
+</ul>
+</div>`).join("\n") : `<p class="more"><a href="/about/">See the full record &rarr;</a></p>`}
+</section>`;
+}
 
 function bio({ headingLevel = "h2", full = false }) {
   const H = headingLevel;
@@ -154,24 +196,12 @@ ${acts.map(([n, t, d]) => `<li><span class="an">${n}</span><h3>${t}</h3><p>${d}<
 
 <blockquote class="pull"><p>Every rule in this book goes back to that lemonade stand: <mark>find the hungry people,</mark> ask what they want, and keep the mess from eating the profit.</p></blockquote>
 
-${full
-  ? credGroups.map(([g, items]) => `<div class="creds">
-<p class="eyebrow">${g}</p>
-<ul>
-${items.map((v) => `<li>${v}</li>`).join("\n")}
-</ul>
-</div>`).join("\n")
-  : `<div class="creds">
-<p class="eyebrow">Highlights</p>
-<ul>
-${highlights.map(([k, v]) => `<li><span class="ck">${k}</span>${v}</li>`).join("\n")}
-</ul>
-</div>`}
 ${full ? `<div class="now">
 <p class="eyebrow">What he studies now</p>
 <p>His research looks at gatekeepers: the people and institutions that decide whose work gets seen and who gets in. Entrepreneurship, he argues, is often the decision to stop waiting to be let in.</p>
-</div>` : `<p class="more"><a href="/about/">More about Marc &rarr;</a></p>`}
-</section>`;
+</div>` : ""}
+</section>
+${record(full)}`;
 }
 
 /* ---------- Homepage ---------- */
