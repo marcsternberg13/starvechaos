@@ -119,7 +119,7 @@ const work = [
     ["Hollywood AI awards show", "Producer of a symposium and awards show on AI and entertainment, at the Academy Awards building and Sony's Hollywood campus, 2025."],
   ]],
   ["Service", [
-    ["Teacher abroad", "Taught English, 2006."],
+    ["English teacher, Harbin, China", "Taught English, 2006."],
     ["Habitat for Humanity", "Team leader. Five houses built."],
     ["Orphanage volunteer", "Kenya."],
   ]],
