@@ -78,20 +78,55 @@ const acts = [
   ["04", "The early bet",
     "Next came a fashion-technology startup with two patents. He pitched investors, built a prototype and tested it with retailers. The idea was early, and he spent his money protecting it instead of building it. He walked away and kept the lesson."],
   ["05", "The insider",
-    "A mentor told him to become an intrapreneur: an entrepreneur hired inside a big company to build something new. He helped Adobe sell its move from boxed software to subscriptions, then built new digital product lines and divisions for publishers and five manufacturers. He led teams of up to 40 and launched a 100-product brand."],
+    "A mentor told him to become an intrapreneur: an entrepreneur hired inside a big company to build something new. He helped Adobe sell its move from boxed software to subscriptions, then built new digital product lines and divisions for publishers and five manufacturers. He led teams of up to 40, launched a 100-product brand, and helped one manufacturer become Walmart Supplier of the Year."],
   ["06", "The producer",
-    "Then he went back to his first love: film. A producer is the entrepreneur of a film: the one who raises the money, hires the team, signs the contracts and carries the risk. He earned an MFA in producing, self-funded his first documentary, won an investor, and built Son of a Botanist Productions into a slate of 29 projects."],
+    "Then he went back to his first love: film. A producer is the entrepreneur of a film: the one who raises the money, hires the team, signs the contracts and carries the risk. He earned an MFA in producing, self-funded his first documentary, won an investor, and built Son of a Botanist Productions into a slate of 29 projects. His feature documentary <i>Cowgirls: Women of Western Art</i> is narrated by Red Steagall."],
 ];
 
-const creds = [
+// Credentials, grouped. The About page shows every group; the homepage shows `highlights` only.
+const credGroups = [
+  ["Awards and honors", [
+    "Kauffman Foundation Entrepreneurial Advantage Award, 2008",
+    "Walmart Supplier of the Year, 2018, as e-commerce lead for a U.S. manufacturer",
+    "Director's Award, Executive Diploma in Strategy and Innovation, Oxford Sa&iuml;d Business School, 2025",
+    "Most Outstanding Graduate, Arizona State University, 2008",
+    "Honorable Mention, Finish Line Script Competition, for the TV pilot <i>SITA: Spies in the Air</i>, 2024",
+    "Producer of <i>JUK</i>: ASC Heritage Award, Out on Film grant, PBS Fine Cut semifinalist",
+  ]],
+  ["Education", [
+    "MSc, Change Leadership, HEC Paris and University of Oxford (in progress)",
+    "Executive Diploma, Strategy and Innovation, University of Oxford, Sa&iuml;d Business School",
+    "MFA, Producing for Film and Television, Chapman University",
+    "Undergraduate Diploma, Creative Writing (Screenwriting), University of Oxford",
+    "MBA, University of Arizona, Eller College of Management, with an international residency in Buenos Aires and Rio de Janeiro",
+    "MA, Administration (Leadership), Northern Arizona University",
+    "BA, Interdisciplinary Studies (Business and Communications), Arizona State University",
+  ]],
+  ["Business", [
+    "Fulbright Specialist, U.S. Department of State",
+    "Consultant to Adobe, ShoreTel and Cisco",
+    "Built and led digital teams abroad, and ran a global e-commerce P&amp;L across the Americas, Europe and Asia",
+    "Founder of more than fifteen ventures; first company sold at 23",
+  ]],
+  ["Film and television", [
+    "Founder and producer, Son of a Botanist Productions",
+    "Writer, producer and director, <i>Cowgirls: Women of Western Art</i>, a feature documentary narrated by Red Steagall",
+    "Producer of a Hollywood symposium and awards show on AI and entertainment, held at the Academy Awards building and Sony's Hollywood campus, 2025",
+  ]],
+  ["Service", [
+    "Taught English abroad, 2006",
+    "Team leader, Habitat for Humanity: five houses built",
+    "Orphanage volunteer, Kenya",
+  ]],
+];
+
+const highlights = [
   ["Award", "Kauffman Foundation Entrepreneurial Advantage Award, 2008"],
+  ["Award", "Walmart Supplier of the Year, 2018"],
   ["Teaching", "Fulbright Specialist, U.S. Department of State"],
-  ["Founder", "Son of a Botanist Productions, film and TV"],
-  ["Clients", "Adobe, ShoreTel and Cisco, as a consultant"],
-  ["Study", "MSc, Change Leadership, HEC Paris and Oxford Sa&iuml;d (in progress)"],
-  ["Study", "Executive Diploma, Strategy and Innovation, Oxford Sa&iuml;d Business School, Director's Award"],
-  ["Study", "MFA, Producing for Film and Television, Chapman University"],
-  ["Study", "BA, Interdisciplinary Studies (Business and Communications), Arizona State University, Most Outstanding Graduate"],
+  ["Film", "<i>Cowgirls: Women of Western Art</i>, narrated by Red Steagall"],
+  ["Study", "MBA, University of Arizona &middot; MA, Northern Arizona University &middot; BA, Arizona State University"],
+  ["Study", "MFA, Chapman University &middot; Oxford Sa&iuml;d Business School &middot; HEC Paris"],
 ];
 
 function bio({ headingLevel = "h2", full = false }) {
@@ -119,12 +154,19 @@ ${acts.map(([n, t, d]) => `<li><span class="an">${n}</span><h3>${t}</h3><p>${d}<
 
 <blockquote class="pull"><p>Every rule in this book goes back to that lemonade stand: <mark>find the hungry people,</mark> ask what they want, and keep the mess from eating the profit.</p></blockquote>
 
-<div class="creds">
-<p class="eyebrow">Credentials</p>
+${full
+  ? credGroups.map(([g, items]) => `<div class="creds">
+<p class="eyebrow">${g}</p>
 <ul>
-${creds.map(([k, v]) => `<li><span class="ck">${k}</span>${v}</li>`).join("\n")}
+${items.map((v) => `<li>${v}</li>`).join("\n")}
 </ul>
-</div>
+</div>`).join("\n")
+  : `<div class="creds">
+<p class="eyebrow">Highlights</p>
+<ul>
+${highlights.map(([k, v]) => `<li><span class="ck">${k}</span>${v}</li>`).join("\n")}
+</ul>
+</div>`}
 ${full ? `<div class="now">
 <p class="eyebrow">What he studies now</p>
 <p>His research looks at gatekeepers: the people and institutions that decide whose work gets seen and who gets in. Entrepreneurship, he argues, is often the decision to stop waiting to be let in.</p>
