@@ -2,8 +2,9 @@
 
 Home of *Hunger, Curiosity & Chaos: 101 Ways Entrepreneurs Think* and its class materials.
 
-- **Open pages:** home, `/book/` and `/class/` contents lists, `/open/` notes, `/about/`
-- **Locked pages:** every book chapter (`/book/01/` … `/book/12/`) and class chapter (`/class/01/` … `/class/12/`), each with its own password
+- **Open pages:** home, `/book/` and `/class/` contents lists, `/book/back/` (indexes, references), `/open/` notes, `/about/`
+- **Locked pages, one password each:** book `/book/part-1/`, `/book/01/` … `/book/12/`, `/book/part-3/`, `/book/part-4/`; class `/class/part-1/`, `/class/01/` … `/class/12/`, `/class/midpoint/`, `/class/final/`. `/book/part-5/` (How It's Taught) opens only with the master password.
+- **Book text:** `content/book/<page>.html`, generated from the manuscript (v2). Edit the manuscript and regenerate rather than hand-editing these files.
 - Mobile-first, no web fonts or images, so it loads fast on phone data
 
 ## How it's built

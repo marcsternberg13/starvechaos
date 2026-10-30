@@ -274,16 +274,16 @@ export function homePage() {
 <section class="catalog">
 <div class="big101" aria-hidden="true">101</div>
 <div class="cat-head">
-<h2>101 rules.<br>12 sections.<br>Two parts.</h2>
+<h2>101 rules.<br>12 sections.<br>Five parts.</h2>
 <p>A dictionary of how builders think. Each rule is short, plain and backed by a real story or by research. Read it front to back, or open it anywhere.</p>
 </div>
 <div class="parts">
 <details class="part p1" open>
-<summary class="ph"><span>Part I</span> How entrepreneurs think <i aria-hidden="true"></i></summary>
+<summary class="ph"><span>01–07</span> How entrepreneurs think <i aria-hidden="true"></i></summary>
 <ol>${part1}</ol>
 </details>
 <details class="part p2" open>
-<summary class="ph"><span>Part II</span> Where it gets applied <i aria-hidden="true"></i></summary>
+<summary class="ph"><span>08–12</span> Where it gets applied <i aria-hidden="true"></i></summary>
 <ol>${part2}</ol>
 </details>
 </div>

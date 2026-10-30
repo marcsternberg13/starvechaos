@@ -2,7 +2,7 @@
 // Cloudflare Pages runs this on every push (build command: node build.mjs).
 import { mkdirSync, writeFileSync, rmSync, readFileSync, cpSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { site, sections, parts } from "./src/config.mjs";
+import { site, sections, parts, weekOf, bookParts, classExtras } from "./src/config.mjs";
 import { homePage, aboutPage } from "./src/home.mjs";
 
 const OUT = "public";
@@ -80,53 +80,135 @@ function sectionList(area) {
 /* ---------- Home (its own full-bleed design, see src/home.mjs) ---------- */
 write("/", homePage());
 
-/* ---------- Book + Class indexes and chapter pages ---------- */
-const areas = {
-  book: {
-    label: "The book",
-    title: `${site.bookTitle}`,
-    intro: "Twelve sections, 101 rules. Each chapter has its own password, shared when it is ready.",
-    chapterNote: "The rules for this section will appear here.",
-  },
-  class: {
-    label: "The class",
-    title: "Class materials",
-    intro: "Lessons, exercises and assignments for each section. Your teacher gives you the password for each chapter when it is time to study it.",
-    chapterNote: "The lesson, exercises and assignment for this section will appear here.",
-  },
+/* ---------- Book + Class: indexes and chapter pages ---------- */
+// Book text lives in content/book/<slug>.html (generated from the manuscript).
+const bookHtml = (slug) => {
+  const f = join("content", "book", `${slug}.html`);
+  return existsSync(f) ? readFileSync(f, "utf8") : "";
 };
+const lockTag = (gate) =>
+  gate === "open" ? `<span class="lock open">OPEN</span>`
+  : gate === "admin" ? `<span class="lock" aria-label="Teacher password required">TEACHERS</span>`
+  : `<span class="lock" aria-label="Password required">LOCKED</span>`;
 
-for (const [area, a] of Object.entries(areas)) {
-  write(`/${area}/`, page({
-    path: `/${area}/`,
-    title: a.label,
+function card(href, num, title, theme, gate = "code") {
+  return `<li><a class="sec" href="${href}">
+<span class="num">${esc(num)}</span>
+<span class="t">${esc(title)}<span class="th">${esc(theme)}</span></span>
+${lockTag(gate)}
+</a></li>`;
+}
+const sectionCards = (area, p) =>
+  sections.filter((x) => x.part === p).map((s) =>
+    card(`/${area}/${s.slug}/`, s.slug, s.title, `Week ${weekOf(s.slug)} · Rules ${s.rules}`)).join("");
+
+// Reading order of the book, used for prev/next links.
+const bookOrder = ["part-1", ...sections.map((s) => s.slug), "part-3", "part-4", "part-5", "back"];
+const bookLabel = (slug) => bookParts[slug] ? `${bookParts[slug].label}: ${bookParts[slug].title}` : `Section ${slug}: ${sections.find((s) => s.slug === slug).title}`;
+const classOrder = ["part-1", ...sections.filter((s) => s.part === 1).map((s) => s.slug), "midpoint", ...sections.filter((s) => s.part === 2).map((s) => s.slug), "final"];
+const classLabel = (slug) => classExtras[slug] ? classExtras[slug].title : `Week ${weekOf(slug)}: Section ${slug}, ${sections.find((s) => s.slug === slug).title}`;
+
+function pager(area, order, label, slug) {
+  const i = order.indexOf(slug);
+  const prev = order[i - 1], next = order[i + 1];
+  return `<nav class="pager" aria-label="Pages">
+${prev ? `<a class="btn ghost" href="/${area}/${prev}/">← ${esc(label(prev))}</a>` : "<span></span>"}
+${next ? `<a class="btn ghost" href="/${area}/${next}/">${esc(label(next))} →</a>` : "<span></span>"}
+</nav>`;
+}
+const lockLink = (area) => `<p style="margin-top:24px"><a href="/api/logout?next=/${area}/">Lock this device</a></p>`;
+
+// ----- Book index
+const bp = (slug) => card(`/book/${slug}/`, bookParts[slug].label.replace("Part ", ""), bookParts[slug].title, `${bookParts[slug].when} · ${bookParts[slug].line}`, bookParts[slug].gate);
+write("/book/", page({
+  path: "/book/",
+  title: "The book",
+  body: `
+<p class="kicker">The book</p>
+<h1>${esc(site.bookTitle)}</h1>
+<p class="lede">Five parts, twelve sections, 101 rules. Each part and section has its own password, shared when the class reaches it.</p>
+<p class="part">Part 1 · Starve Chaos</p>
+<ul class="cards">${bp("part-1")}</ul>
+<p class="part">Part 2 · The Rules</p>
+<p class="group">${esc(parts[1])} · Weeks 2–8</p>
+<ul class="cards">${sectionCards("book", 1)}</ul>
+<p class="group midnote">Week 9: midpoint pitch. No new reading.</p>
+<p class="group">${esc(parts[2])} · Weeks 10–14</p>
+<ul class="cards">${sectionCards("book", 2)}</ul>
+<p class="part">Parts 3 to 5</p>
+<ul class="cards">${bp("part-3")}${bp("part-4")}${bp("part-5")}</ul>
+<p class="part">Back of the book</p>
+<ul class="cards">${card("/book/back/", "+", bookParts.back.title, bookParts.back.line, "open")}</ul>
+`,
+}));
+
+// ----- Book pages: the 12 sections
+sections.forEach((s) => {
+  write(`/book/${s.slug}/`, page({
+    path: `/book/${s.slug}/`,
+    title: `${s.slug} ${s.title}`,
+    area: "book",
     body: `
-<p class="kicker">${esc(a.label)}</p>
-<h1>${esc(a.title)}</h1>
-<p class="lede">${esc(a.intro)}</p>
-${sectionList(area)}
+<p class="kicker">The book · Part 2 · Section ${s.slug} · Week ${weekOf(s.slug)} · Rules ${esc(s.rules)}</p>
+<h1>${esc(s.title)}</h1>
+<p class="lede">${esc(s.theme)}</p>
+<article class="book-body">${bookHtml(s.slug)}</article>
+${pager("book", bookOrder, bookLabel, s.slug)}
+${lockLink("book")}
 `,
   }));
+});
 
-  sections.forEach((s, i) => {
-    const prev = sections[i - 1];
-    const next = sections[i + 1];
-    write(`/${area}/${s.slug}/`, page({
-      path: `/${area}/${s.slug}/`,
-      title: `${s.slug} ${s.title}`,
-      area,
-      body: `
-<p class="kicker">${esc(a.label)} · Section ${s.slug} · ${esc(s.theme)}</p>
-<h1>${esc(s.title)}</h1>
-<div class="placeholder">${esc(a.chapterNote)}</div>
-<nav class="pager" aria-label="Sections">
-${prev ? `<a class="btn ghost" href="/${area}/${prev.slug}/">← ${prev.slug}</a>` : "<span></span>"}
-${next ? `<a class="btn ghost" href="/${area}/${next.slug}/">${next.slug} →</a>` : "<span></span>"}
-</nav>
-<p style="margin-top:24px"><a href="/api/logout?next=/${area}/">Lock this device</a></p>
+// ----- Book pages: Parts 1, 3, 4, 5 and the back of the book
+for (const [slug, b] of Object.entries(bookParts)) {
+  write(`/book/${slug}/`, page({
+    path: `/book/${slug}/`,
+    title: `${b.label}: ${b.title}`,
+    area: b.gate === "open" ? undefined : "book",
+    body: `
+<p class="kicker">The book · ${esc(b.label)} · ${esc(b.when)}</p>
+<h1>${esc(b.title)}</h1>
+<article class="book-body">${bookHtml(slug)}</article>
+${pager("book", bookOrder, bookLabel, slug)}
+${b.gate === "open" ? "" : lockLink("book")}
 `,
-    }));
-  });
+  }));
+}
+
+// ----- Class index and pages (one page per block of the 16-week course)
+const classNote = "The lesson, exercises and assignment for this section will appear here.";
+const cx = (slug) => card(`/class/${slug}/`, classExtras[slug].when.replace(/^Weeks? /, "W"), classExtras[slug].title, "Class session materials");
+write("/class/", page({
+  path: "/class/",
+  title: "The class",
+  body: `
+<p class="kicker">The class</p>
+<h1>Class materials</h1>
+<p class="lede">Sixteen weeks, two sessions a week. Your teacher gives you the password for each page when it is time to study it.</p>
+<ul class="cards">${cx("part-1")}</ul>
+<p class="group">${esc(parts[1])} · Weeks 2–8</p>
+<ul class="cards">${sectionCards("class", 1)}</ul>
+<ul class="cards" style="margin-top:10px">${cx("midpoint")}</ul>
+<p class="group">${esc(parts[2])} · Weeks 10–14</p>
+<ul class="cards">${sectionCards("class", 2)}</ul>
+<ul class="cards" style="margin-top:10px">${cx("final")}</ul>
+`,
+}));
+for (const slug of classOrder) {
+  const ex = classExtras[slug];
+  const s = sections.find((x) => x.slug === slug);
+  write(`/class/${slug}/`, page({
+    path: `/class/${slug}/`,
+    title: ex ? ex.title : `${slug} ${s.title}`,
+    area: "class",
+    body: `
+<p class="kicker">The class · ${ex ? esc(ex.when) : `Week ${weekOf(slug)} · Section ${slug} · ${esc(s.theme)}`}</p>
+<h1>${esc(ex ? ex.title : s.title)}</h1>
+<div class="placeholder">${esc(ex ? ex.note : classNote)}</div>
+${pager("class", classOrder, classLabel, slug)}
+${lockLink("class")}
+`,
+  }));
 }
 
 /* ---------- Open notes ---------- */
@@ -144,6 +226,9 @@ write("/open/", page({
 /* ---------- About (full-bleed, shares the bio with the homepage) ---------- */
 write("/about/", aboutPage());
 
+const pageNames = {};
+for (const sl of bookOrder) pageNames[`/book/${sl}/`] = `Book · ${bookLabel(sl)}`;
+for (const sl of classOrder) pageNames[`/class/${sl}/`] = `Class · ${classLabel(sl)}`;
 /* ---------- Login ---------- */
 write("/login/", page({
   path: "/login/",
@@ -152,21 +237,21 @@ write("/login/", page({
   body: `
 <p class="kicker">Locked chapter</p>
 <h1 id="h">Enter the password</h1>
-<p class="lede">Each chapter has its own password. Ask your teacher if you don't have it.</p>
+<p class="lede">Each page has its own password. Ask your teacher if you don't have it.</p>
 <form class="gate" method="post" action="/api/login">
 <input type="hidden" name="next" id="next" value="/">
 <label for="code">Password</label>
 <input type="password" id="code" name="code" autocomplete="off" autocapitalize="off" spellcheck="false" required>
 <p class="err" id="err" role="alert"></p>
-<button class="btn" type="submit">Open chapter</button>
+<button class="btn" type="submit">Open page</button>
 </form>
 <script>
 (function () {
   var q = new URLSearchParams(location.search);
   var next = q.get("next") || "/";
   document.getElementById("next").value = next;
-  var m = next.match(/^\\/(book|class)\\/(\\d\\d)\\//);
-  if (m) document.getElementById("h").textContent = (m[1] === "book" ? "Book" : "Class") + ", section " + m[2];
+  var names = ${JSON.stringify(pageNames)};
+  if (names[next]) document.getElementById("h").textContent = names[next];
   var e = q.get("err");
   var msg = { wrong: "That password didn't work. Check it and try again.",
               closed: "This chapter isn't open yet." }[e];
