@@ -53,9 +53,43 @@ export const bookParts = {
   back: { label: "Back of the book", title: "Indexes, References and More", line: "Force and big-idea indexes, references and acknowledgments.", when: "Open to all", gate: "open" },
 };
 
-// Class pages that are not one of the 12 sections.
-export const classExtras = {
-  "part-1": { title: "Week 1: The Lemonade Stand", when: "Week 1", note: "The Week 1 lesson, the component table and team setup will appear here." },
-  midpoint: { title: "Week 9: Midpoint Pitch", when: "Week 9", note: "The midpoint pitch guide and scoring will appear here." },
-  final: { title: "Weeks 15–16: Final Presentations", when: "Weeks 15–16", note: "The final presentation guide, slide list and scoring will appear here." },
+// The 16 weeks of the course. Each week is one class page, /class/week-NN/, with its own password.
+// read = the book page for that week; words = the one word for Session A and Session B;
+// card = true when a chaos card is played that week.
+export const weeks = [
+  { n: 1, title: "The Lemonade Stand", focus: "Introduction and team forming", words: ["Entrepreneurship", "Chaos"], read: "part-1", story: "The lemonade stand", team: "Form your team of four or five. Fill in the component table for a local idea. Choose the one real problem you will work on all semester." },
+  ...sections.map((s) => ({ n: weekOf(s.slug), section: s.slug, title: s.title, focus: `Section ${s.slug}: ${s.title}`, read: s.slug })),
+  { n: 9, title: "Midpoint Pitch", focus: "Spoken idea pitches, then revise the idea", words: ["Feedback", "Hypothesis"], read: "part-3", story: "Pitching as the cheapest test", team: "Session A: give a three-minute spoken pitch, no slides, then take four minutes of feedback. Scored out of 20. Session B: revise your idea using the feedback." },
+  { n: 15, title: "Build the Plan and the Deck", focus: "Turn the semester's work into a plan and a slide deck", words: ["Plan", "Rehearsal"], read: "part-4", story: "Five questions for your next decision", team: "Build your plan and your 12-slide deck. Rehearse and get feedback. Every row of the Week 1 component table must be answered." },
+  { n: 16, title: "Final Presentations", focus: "Each team presents its business idea and plan", words: ["Pitch", "Starve"], read: "part-4", story: "Each team presents", team: "Present your idea and plan: 12 slides, eight minutes plus four minutes of questions. Scored out of 100." },
+].sort((a, b) => a.n - b.n);
+
+// Per-section details for Weeks 2–8 and 10–14 (session words and story from the course plan).
+const sectionWeek = {
+  "01": [["Owner", "Strategy"], "Laundry at three times the price"],
+  "02": [["Opportunity", "Gap"], "Getting on Amazon early, 2003"],
+  "03": [["Resources", "Bootstrapping"], "Landscaping: the right machine for the leaves"],
+  "04": [["Bet", "Scenario"], "Thirty bets"],
+  "05": [["Question", "Evidence"], "The question I asked my university"],
+  "06": [["Failure", "Pivot"], "Two patents and an empty bank account"],
+  "07": [["Focus", "Priority"], "Seven states"],
+  "08": [["Sale", "Channel"], "Sell first, ask second"],
+  "09": [["Margin", "Runway"], "Quote the job, not the hour"],
+  "10": [["Team", "Conflict"], "Building teams far from home"],
+  "11": [["Bottleneck", "System"], "A hundred products, one master file"],
+  "12": [["Product", "Prototype"], "A digital wardrobe, twenty years early"],
 };
+const chaosCardWeeks = new Set([3, 5, 7, 10, 11, 13, 14]);
+for (const w of weeks) {
+  w.slug = `week-${String(w.n).padStart(2, "0")}`;
+  w.sessions = `Sessions ${2 * w.n - 1}–${2 * w.n}`;
+  w.card = chaosCardWeeks.has(w.n);
+  if (w.section) {
+    const [words, story] = sectionWeek[w.section];
+    w.words = words;
+    w.story = story;
+    w.team = w.n <= 8
+      ? "Use this week's rules on your team's problem. Add one piece to your Problem Map and one entry to your chaos log."
+      : "Use this week's rules to build the business behind your idea. Add the piece to your plan and one entry to your chaos log.";
+  }
+}

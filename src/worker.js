@@ -2,7 +2,7 @@
 // chapter pages. Only /book/*, /class/* and /api/* reach this code (see
 // run_worker_first in wrangler.jsonc); everything else is served directly.
 import {
-  keyForPath, parseCodes, makeToken, checkToken, cookieName, readCookie,
+  keyForPath, hasCode, makeToken, checkToken, cookieName, readCookie,
   setCookie, codeMatches, safeNext,
 } from "../lib/auth.js";
 
@@ -23,13 +23,12 @@ async function login(request, env) {
   if (!env.AUTH_SECRET || !key) return redirect(back("wrong"));
 
   // Marc's master password opens every chapter.
-  if (env.ADMIN_CODE && codeMatches(code, env.ADMIN_CODE)) {
+  if (await codeMatches(code, "all")) {
     return redirect(next, [setCookie(cookieName("all"), await makeToken(env, "all"))]);
   }
 
-  const expected = parseCodes(env)[key];
-  if (!expected) return redirect(back("closed"));
-  if (!codeMatches(code, expected)) return redirect(back("wrong"));
+  if (!hasCode(key)) return redirect(back("closed"));
+  if (!(await codeMatches(code, key))) return redirect(back("wrong"));
 
   return redirect(next, [setCookie(cookieName(key), await makeToken(env, key))]);
 }
