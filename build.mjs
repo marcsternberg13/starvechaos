@@ -213,7 +213,7 @@ ${weekBlock(15, 16)}
 const materialsBlock = (x) => {
   const m = x.materials;
   if (!m) return `<h2>Materials</h2>\n<p>Materials are posted when the session opens.</p>`;
-  const step = (st, i) => `<li><a class="step" href="${st.href}"><span class="sn">${i + 1}</span><span class="st"><strong>${esc(st.what)}</strong><span>${esc(st.note)}</span></span></a>${st.extra ? `<p class="subs"><a href="${st.extra.href}">${esc(st.extra.label)}</a> · <a href="${m.handoutPdf}" download>download the PDF</a></p>` : ""}</li>`;
+  const step = (st, i) => `<li><a class="step" href="${st.href}"><span class="sn">${i + 1}</span><span class="st"><strong>${esc(st.what)}</strong><span>${esc(st.note)}</span></span></a>${st.extra ? `<p class="subs"><a href="${st.extra.href}">${esc(st.extra.label)}</a> <a class="quiet" href="${m.handoutPdf}" download>(download the PDF)</a></p>` : ""}</li>`;
   return `<h2>In class, step by step</h2>
 <ol class="steps">${m.steps.map(step).join("")}</ol>
 <h2>After class</h2>
