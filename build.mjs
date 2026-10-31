@@ -48,7 +48,7 @@ ${area ? '<meta name="robots" content="noindex">' : ""}
 ${body}
 </div></main>
 <footer><div class="wrap">
-<p>${esc(site.bookTitle)}: ${esc(site.bookSubtitle)} · ${esc(site.author)}</p>
+<p>${esc(site.bookTitle)}: ${esc(site.bookSubtitle)} · ${esc(site.author)}<br>Published by Son of a Botanist Productions LLC · &copy; ${new Date().getFullYear()} ${esc(site.author)}. All rights reserved.</p>
 </div></footer>
 </body>
 </html>

@@ -48,7 +48,7 @@ ${body}
 </main>
 <footer class="foot">
 ${logo}
-<p>${esc(site.bookTitle)}: ${esc(site.bookSubtitle)}<br>&copy; ${new Date().getFullYear()} ${esc(site.author)}. All rights reserved.</p>
+<p>${esc(site.bookTitle)}: ${esc(site.bookSubtitle)}<br>Published by Son of a Botanist Productions LLC<br>&copy; ${new Date().getFullYear()} ${esc(site.author)}. All rights reserved.</p>
 </footer>
 <nav class="dock" aria-label="Quick links">
 <a class="d-book" href="/book/"><span>Read</span>The book</a>
