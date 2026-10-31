@@ -177,6 +177,27 @@ const materials = {
     ],
     source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Section 01 and Part 5). Son of a Botanist Productions. https://starvechaos.com · Vanneste, B. S. (2017). How much do industry, corporation, and business matter, really? A meta-analysis. <em>Strategy Science, 2</em>(2), 121–139. https://doi.org/10.1287/stsc.2017.0029 · Tetlock, P. E., Kristel, O. V., Elson, S. B., Green, M. C., &amp; Lerner, J. S. (2000). The psychology of the unthinkable: Taboo trade-offs, forbidden base rates, and heretical counterfactuals. <em>Journal of Personality and Social Psychology, 78</em>(5), 853–870. https://doi.org/10.1037/0022-3514.78.5.853 · Porter, M. E. (1996). What is strategy? <em>Harvard Business Review, 74</em>(6), 61–78.",
   },
+  4: {
+    steps: [
+      { what: "Warm-up quiz", href: "/class/session-04/quiz/?q=S04-warmup", note: "On your phone. Type the code from the screen. Not graded." },
+      { what: "The lesson: different, not better", href: "/class/session-04/slides/", note: "Slides. The second half of the laundry story, three rules and one phrase to watch." },
+      { what: "Class exercise and group work: Two bakeries, one street", href: "/class/session-04/exercise/", note: "Slides. Better or different, the copy test and two kinds of door. Then box 3 of your Problem Map.", extra: { label: "Open the exercise sheet", href: "/class/session-04/sheet/", pdf: "/class/session-04/sheet.pdf" } },
+      { what: "Session 4 quiz", href: "/class/session-04/quiz/?q=S04-quiz", note: "On your phone. Ten graded questions on today." },
+      { what: "Exit question", href: "/class/session-04/quiz/?q=S04-exit", note: "On your phone, before you leave." },
+    ],
+    read: false,
+    homework: [
+      "Ask two people who have your team's problem what they do about it today. Write down their answers.",
+      "Map keepers: add those answers to box 3 of the Problem Map.",
+      "Chaos-log keepers: add one new entry to your team's chaos log.",
+    ],
+    final: [
+      "Why will customers pick you, and not a rival?",
+      "Write one choice for your idea that a rival could not copy word for word. What does your team give up to make it?",
+      "Which of your team's next decisions are one-way doors? Which can you decide fast?",
+    ],
+    source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Section 01, Part 3 and Part 5). Son of a Botanist Productions. https://starvechaos.com · Porter, M. E. (1996). What is strategy? <em>Harvard Business Review, 74</em>(6), 61–78. https://hbr.org/1996/11/what-is-strategy · Van den Steen, E. (2017). A formal theory of strategy. <em>Management Science, 63</em>(8), 2616–2636. https://doi.org/10.1287/mnsc.2016.2468 · Collis, D. J., &amp; Rukstad, M. G. (2008). Can you say what your strategy is? <em>Harvard Business Review, 86</em>(4), 82–90. https://hbr.org/2008/04/can-you-say-what-your-strategy-is · Bezos, J. P. (2016). <em>2015 letter to shareholders</em> [Form 8-K Exhibit 99.1]. Amazon.com, Inc. U.S. Securities and Exchange Commission. https://www.sec.gov/Archives/edgar/data/1018724/000119312516530910/d168744dex991.htm · Bezos, J. P. (2017, April 17). <em>2016 letter to shareholders</em>. Amazon. https://www.aboutamazon.com/news/company-news/2016-letter-to-shareholders",
+  },
 };
 const sessionWords = ["Entrepreneurship","Chaos","Owner","Strategy","Opportunity","Gap","Resources","Bootstrapping","Bet","Scenario","Question","Evidence","Failure","Pivot","Focus","Priority","Feedback","Hypothesis","Sale","Channel","Margin","Runway","Team","Conflict","Bottleneck","System","Product","Prototype","Plan","Rehearsal","Pitch","Starve"];
 export const classSessions = [];

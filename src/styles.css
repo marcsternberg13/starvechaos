@@ -213,7 +213,7 @@ footer .wrap { padding-top: 18px; padding-bottom: 28px; }
 .book-body th, .book-body td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
 .book-body thead th { background: var(--card); font-weight: 700; }
 
-.book-body p.ref { padding-left: 1.6em; text-indent: -1.6em; font-size: .95rem; line-height: 1.5; margin-bottom: .8em; }
+.book-body p.ref { padding-left: 1.6em; text-indent: -1.6em; font-size: .95rem; line-height: 1.5; margin-bottom: .8em; overflow-wrap: anywhere; }
 
 .small{font-size:16px;opacity:.75;margin-top:12px}
 .book-body th[scope=row]{text-align:left;white-space:nowrap;padding-right:14px}

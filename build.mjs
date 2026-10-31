@@ -217,10 +217,10 @@ const materialsBlock = (x) => {
   return `<h2>In class, step by step</h2>
 <ol class="steps">${m.steps.map(step).join("")}</ol>
 <h2>After class</h2>
-<ol class="steps after">
-<li><a class="step" href="${m.read ? m.read.href : readLinkHref(x.week.read)}"><span class="sn">R</span><span class="st"><strong>${esc(m.read ? m.read.what : "Read Part 1")}</strong><span>${esc(m.read ? m.read.note : "The book reading for this week. It has its own password.")}</span></span></a></li>
+${m.read === false && !m.later ? "" : `<ol class="steps after">`}
+${m.read === false ? "" : `<li><a class="step" href="${m.read ? m.read.href : readLinkHref(x.week.read)}"><span class="sn">R</span><span class="st"><strong>${esc(m.read ? m.read.what : "Read Part 1")}</strong><span>${esc(m.read ? m.read.note : "The book reading for this week. It has its own password.")}</span></span></a></li>`}
 ${m.later ? `<li><a class="step" href="${m.later.href}"><span class="sn">Q</span><span class="st"><strong>${esc(m.later.what)}</strong><span>${esc(m.later.note)}</span></span></a></li>` : ""}
-</ol>
+${m.read === false && !m.later ? "" : `</ol>`}
 <h3>Homework</h3>
 <ol>${m.homework.map((h) => `<li>${esc(h)}</li>`).join("")}</ol>
 <div class="final-box">
