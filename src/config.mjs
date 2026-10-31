@@ -115,7 +115,8 @@ const special = {
 const materials = {
   1: {
     slides: "/class/session-01/slides/",
-    handout: "/class/session-01/handout.pdf",
+    handout: "/class/session-01/handout/",
+    handoutPdf: "/class/session-01/handout.pdf",
     homework: [
       "Read Part 1 of the book.",
       "Write down three problems you saw in your city this week. Keep them on your phone and bring them to Session 2.",

@@ -210,7 +210,7 @@ const materialsBlock = (x) => {
 <ul class="mat">
 <li><strong>Reading:</strong> ${readLink(x.week.read)}</li>
 <li><strong>Slides:</strong> <a href="${m.slides}">Open the slides</a></li>
-<li><strong>Handout:</strong> <a href="${m.handout}">Download the handout</a> (PDF, two pages)</li>
+<li><strong>Handout:</strong> <a href="${m.handout}">Open the handout</a> · <a href="${m.handoutPdf}" download>download the PDF</a></li>
 <li><strong>Quiz:</strong> on your phone in class. Scan the code on the screen, then type the 6-digit code.</li>
 <li><strong>Exit question:</strong> on your phone at the end of class, the same way.</li>
 </ul>
