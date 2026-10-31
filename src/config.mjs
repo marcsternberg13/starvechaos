@@ -243,6 +243,28 @@ const materials = {
     ],
     source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Section 02 and Part 5). Son of a Botanist Productions. https://starvechaos.com",
   },
+  7: {
+    steps: [
+      { what: "Warm-up quiz", href: "/class/session-07/quiz/?q=S07-warmup", note: "On your phone. Type the code from the screen. Not graded." },
+      { what: "The lesson: cheap tools first", href: "/class/session-07/slides/", note: "Slides. The first half of the landscaping story and four rules about using what you already have." },
+      { what: "Class exercise and group work: The family asset inventory", href: "/class/session-07/exercise/", note: "Slides. A family with a car, a big kitchen and a cousin’s stall, and no new money: list every resource, combine them, pick a business. Then your team asset list.", extra: { label: "Open the exercise sheet", href: "/class/session-07/sheet/", pdf: "/class/session-07/sheet.pdf" } },
+      { what: "Session 7 quiz", href: "/class/session-07/quiz/?q=S07-quiz", note: "On your phone. Ten graded questions on today." },
+      { what: "Exit question", href: "/class/session-07/quiz/?q=S07-exit", note: "On your phone, before you leave." },
+    ],
+    read: { what: "Read Section 03", href: "/book/03/", note: "Rules 23, 26, 27, 28 and 29. It has its own password." },
+    homework: [
+      "Read Rules 23, 26, 27, 28 and 29 in Section 03. For each one, write one way your team could use it.",
+      "Ask one real seller in your city the price of the one tool, material or service your idea needs most. Bring it to Session 8.",
+      "Map keepers: keep the team asset list for Session 8.",
+      "Chaos-log keepers: add one new entry to your team's chaos log.",
+    ],
+    final: [
+      "What does your team already have that it is not using?",
+      "What is the smallest first step you can afford? If it fails, what do you lose?",
+      "What will your team do by hand first, before it pays for any machine or system?",
+    ],
+    source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Section 03 and Part 5). Son of a Botanist Productions. https://starvechaos.com · Sarasvathy, S. D. (2001). Causation and effectuation: Toward a theoretical shift from economic inevitability to entrepreneurial contingency. <em>Academy of Management Review, 26</em>(2), 243–263. https://doi.org/10.5465/amr.2001.4378020 · Baker, T., &amp; Nelson, R. E. (2005). Creating something from nothing: Resource construction through entrepreneurial bricolage. <em>Administrative Science Quarterly, 50</em>(3), 329–366. https://doi.org/10.2189/asqu.2005.50.3.329 · Graham, P. (2013, July). <em>Do things that don’t scale</em>. https://paulgraham.com/ds.html",
+  },
   8: {
     steps: [
       { what: "Warm-up quiz", href: "/class/session-08/quiz/?q=S08-warmup", note: "On your phone. Type the code from the screen. Not graded." },

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Session 07 · Exercise sheet · The family asset inventory</title>
+<style>
+@font-face{font-family:Oswald;font-weight:700;src:url(/fonts/oswald-latin-700-normal.woff2)}
+@font-face{font-family:"Source Serif 4";font-weight:400;src:url(/fonts/source-serif-4-latin-400-normal.woff2)}
+@font-face{font-family:"Source Serif 4";font-style:italic;font-weight:400;src:url(/fonts/source-serif-4-latin-400-italic.woff2)}
+@font-face{font-family:"IBM Plex Mono";font-weight:400;src:url(/fonts/ibm-plex-mono-latin-400-normal.woff2)}
+@page{size:Letter;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Source Serif 4",Georgia,serif;color:#16130F;font-size:10pt;line-height:1.3}
+.page{width:8.5in;height:11in;padding:.4in .5in .55in;position:relative;page-break-after:always;overflow:hidden;background:#fff}
+.page:last-of-type{page-break-after:auto}
+.mono{font-family:"IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;font-size:7.5pt}
+.top{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1.5pt solid #16130F;padding-bottom:6pt}
+h1{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;font-size:36pt;line-height:.9}
+h2{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;font-size:14pt;line-height:1;margin-top:12pt}
+h2 small{font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:7pt;letter-spacing:.1em;color:#17707A;margin-left:6pt}
+.lead{font-style:italic;font-size:10pt;margin-top:6pt}
+.ask{font-size:9.5pt;margin-top:4pt}
+table{width:100%;border-collapse:collapse;margin-top:6pt}
+th{font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:7pt;letter-spacing:.1em;text-transform:uppercase;text-align:left;color:#6B655B;padding:0 4pt 3pt 0;border-bottom:1pt solid #16130F}
+td{border-bottom:.5pt solid #CFC7B8;padding:4pt 6pt 4pt 0;vertical-align:top;height:.3in}
+td.c{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:700;font-size:12pt;width:.35in;color:#C8401E}
+td.k{white-space:nowrap;font-family:Oswald,"Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;font-size:9pt;width:.9in}
+td.k.b{color:#17707A} td.k.d{color:#C8401E}
+td.box{width:.5in;border-left:.5pt solid #CFC7B8}
+td.wide{border-left:.5pt solid #CFC7B8}
+.field{display:flex;gap:6pt;align-items:flex-end;margin-top:7pt}
+.field span{font-family:"IBM Plex Mono",monospace;font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.field i{flex:1;border-bottom:.75pt solid #6B655B;height:15pt}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:4pt 18pt}
+.lines i{display:block;border-bottom:.75pt solid #6B655B;height:17pt}
+.p2 td{height:.27in}
+.key{display:flex;gap:10pt;margin-top:8pt;font-size:8.5pt}
+.key div{border-top:4pt solid #17707A;padding-top:3pt;flex:1}
+.key div.d{border-color:#C8401E}
+.key b{font-family:Oswald,"Arial Narrow",sans-serif;text-transform:uppercase;font-size:9pt}
+.final{border:3pt solid #16130F;border-top:10pt solid #C8401E;padding:10pt 12pt;margin-top:12pt}
+.final h2{font-size:18pt;margin-top:3pt}
+.final .mono{color:#C8401E}
+.hw ol{margin:4pt 0 0 14pt} .hw li{margin-top:3pt}
+.ref{overflow-wrap:anywhere;font-size:7pt;color:#6B655B;margin-top:4pt;padding-left:1.4em;text-indent:-1.4em}
+.src{font-family:"IBM Plex Mono",monospace;font-size:6.5pt;color:#6B655B;margin-top:6pt}
+.foot{position:absolute;left:.5in;right:.5in;bottom:.25in;display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:6.5pt;color:#6B655B;line-height:1.5}
+.bar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;max-width:8.5in;margin:0 auto;padding:14px 16px;font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.bar a{color:#C8401E;min-height:44px;display:inline-flex;align-items:center}
+.pub{max-width:8.5in;margin:0 auto 24px;padding:0 16px;font:12px/1.5 "IBM Plex Mono",monospace;color:#6B655B}
+@media screen{
+  html{background:#E7E1D6}
+  .page{margin:0 auto 18px}
+}
+@media screen and (max-width:860px){
+  body{font-size:17px}
+  .page{width:auto;height:auto;padding:22px 18px 28px;overflow:visible}
+  h1{font-size:40px}
+  h2{font-size:22px;margin-top:22px}
+  h2 small{display:block;margin:6px 0 0;font-size:11px}
+  .top{flex-direction:column;align-items:flex-start;gap:8px}
+  .top .mono[style*="right"]{text-align:left!important}
+  .lead,.ask{font-size:17px}
+  .mono{font-size:11px}
+  .fill,.field,.lines,td.box,td.wide,th.box,th.wide{display:none}
+  td{height:auto;padding:8px 6px 8px 0;font-size:16px}
+  td.k{white-space:nowrap;font-size:15px;width:auto}
+  .key{flex-direction:column;font-size:16px}
+  .key b{font-size:16px}
+  .two{display:block}
+  .final li,.final p,.hw li{font-size:16px!important}
+  .ref,.src{font-size:13px}
+  .foot{position:static;margin-top:18px;flex-direction:column;gap:6px;font-size:12px}
+}
+@media print{.bar,.pub{display:none}}
+
+table.grid td{height:.42in;border-left:.5pt solid #CFC7B8}
+table.grid td.k{border-left:none}
+table.grid th.o{width:1.75in}
+.yn{font-size:8.5pt;margin-top:4pt;color:#6B655B}
+@media screen and (max-width:860px){table.grid td{height:28px}table.grid th{font-size:9px;letter-spacing:0;padding-right:2px}table.grid td.k{white-space:normal;font-size:13px}table.grid th.o{width:22%}}
+
+table.grid td{height:.26in;border-left:.5pt solid #CFC7B8}
+table.grid td.k{border-left:none}
+td.hint{font-size:8pt;color:#6B655B;width:2.9in}
+th.um{width:.45in} th.who{width:1.2in}
+@media screen and (max-width:860px){table.grid td{height:28px}td.hint{font-size:14px;width:auto}table.grid th{font-size:9px;letter-spacing:0;padding-right:2px}table.grid td.k{white-space:normal;font-size:13px}}
+.p2 table.grid td{height:.32in}
+</style>
+<body>
+<div class="bar"><a href="/class/session-07/">← Back to the session</a><a href="/class/session-07/sheet.pdf" download>Download PDF</a></div>
+
+<section class="page">
+  <div class="top">
+    <div><p class="mono" style="color:#17707A">Session 07 · Resources · Class exercise</p>
+      <h1 style="margin-top:4pt">The family<br>asset inventory.</h1></div>
+    <p class="mono" style="text-align:right">The Starve Chaos Curriculum<br>Hunger, Curiosity &amp; Chaos</p>
+  </div>
+  <p class="lead">A family in your city or town has a car, a big kitchen, and a cousin who runs a stall where many people pass each day. They have no new money to spend. What business could they start this week? Picture the family, and work from imagination. You may add family details that fit the case.</p>
+  <div class="two">
+    <div class="field"><span>Names</span><i></i></div>
+    <div class="field"><span>Group</span><i></i></div>
+  </div>
+  <div class="two">
+    <div class="field"><span>Our guess: how many resources?</span><i></i></div>
+    <div class="field"><span>Our count after Task 1</span><i></i></div>
+  </div>
+
+  <h2>Task 1 · List every resource <small>10 minutes</small></h2>
+  <p class="ask">Write at least two things in each row.</p>
+  <table class="grid">
+    <thead><tr><th>Kind</th><th>Ask</th><th class="wide">This family has</th></tr></thead>
+    <tbody><tr><td class="k b">Money</td><td class="hint">What cash do they have today, without borrowing?</td><td class="wide"></td></tr><tr><td class="k b">Time</td><td class="hint">Who is free, and when?</td><td class="wide"></td></tr><tr><td class="k b">Skills</td><td class="hint">What can each person do well?</td><td class="wide"></td></tr><tr><td class="k b">Tools</td><td class="hint">What machines and equipment do they own?</td><td class="wide"></td></tr><tr><td class="k b">Space</td><td class="hint">What rooms, yard or stall space can they use?</td><td class="wide"></td></tr><tr><td class="k b">Materials</td><td class="hint">What do they already buy or keep in the house?</td><td class="wide"></td></tr><tr><td class="k b">People</td><td class="hint">Who trusts them? Who would buy first?</td><td class="wide"></td></tr></tbody>
+  </table>
+  <h2>Task 2 · Combine, do not buy <small>8 minutes</small></h2>
+  <p class="ask">Pick two or three resources from different rows. Write three businesses that need no new money: “We use … and … to sell … to ….”</p>
+  <div class="lines"><i></i><i></i><i></i></div>
+
+  <h2>Task 3 · Pick one to start this week <small>7 minutes</small></h2>
+  <div class="field"><span>Our pick</span><i></i></div>
+  <table class="grid">
+    <thead><tr><th>Check</th><th>Question</th><th class="wide">Our answer</th></tr></thead>
+    <tbody><tr><td class="k d">Loss</td><td class="hint">If it fails, what do they lose? Can they afford it? <span class="mono" style="font-size:6.5pt">Rule 30</span></td><td class="wide"></td></tr><tr><td class="k d">By hand</td><td class="hint">How will they serve the first ten customers themselves? <span class="mono" style="font-size:6.5pt">Rule 31</span></td><td class="wide"></td></tr><tr><td class="k d">Hidden</td><td class="hint">Two costs a customer never sees. How to keep them cheap? <span class="mono" style="font-size:6.5pt">Rule 24</span></td><td class="wide"></td></tr><tr><td class="k d">First buyer</td><td class="hint">Who buys first? How do they already know this family? <span class="mono" style="font-size:6.5pt">Rule 25</span></td><td class="wide"></td></tr></tbody>
+  </table>
+  <div class="field"><span>One resource our business did not use</span><i></i></div>
+  <p class="src">Source: Sternberg (2026), Section 03 key terms and Rules 24, 25, 30 and 31; Baker and Nelson (2005). The family case was written for this class.</p>
+  <div class="foot"><span>Published by Son of a Botanist Productions LLC · © 2026 Marc Sternberg. All rights reserved.</span><span>1 / 2</span></div>
+</section>
+
+<section class="page p2">
+  <div class="top">
+    <div><p class="mono" style="color:#C8401E">Session 07 · Group work · Team page</p>
+      <h1 style="margin-top:4pt">The team<br>asset list.</h1></div>
+    <p class="mono" style="text-align:right">Map keeper keeps this page<br>for Session 8</p>
+  </div>
+  <div class="two">
+    <div class="field"><span>Team</span><i></i></div>
+    <div class="field"><span>Map keeper</span><i></i></div>
+  </div>
+
+  <h2>Steps 1 to 3 · Our team, marked <small>20 minutes</small></h2>
+  <p class="ask">1. Each student lists what they have, in all seven rows, starting with the three things from homework. 2. The map keeper combines every list into this table. 3. Read boxes 1, 2 and 3 and your gap sentence. Mark each asset <b>U</b> (used for our problem) or <b>N</b> (not used yet).</p><table class="grid">
+    <thead><tr><th>Kind</th><th class="wide">What our team has</th><th class="who box">Who brings it</th><th class="um box">U or N</th></tr></thead>
+    <tbody><tr><td class="k b">Money</td><td class="wide"></td><td class="box"></td><td class="box"></td></tr><tr><td class="k b">Time</td><td class="wide"></td><td class="box"></td><td class="box"></td></tr><tr><td class="k b">Skills</td><td class="wide"></td><td class="box"></td><td class="box"></td></tr><tr><td class="k b">Tools</td><td class="wide"></td><td class="box"></td><td class="box"></td></tr><tr><td class="k b">Space</td><td class="wide"></td><td class="box"></td><td class="box"></td></tr><tr><td class="k b">Materials</td><td class="wide"></td><td class="box"></td><td class="box"></td></tr><tr><td class="k b">People</td><td class="wide"></td><td class="box"></td><td class="box"></td></tr></tbody>
+  </table>
+
+  <h2>Step 4 · One N, used now <small>5 minutes</small></h2>
+  <p class="ask">Circle one N that could help the customer in box 1 now, without buying anything. How?</p>
+  <div class="lines"><i></i><i></i></div>
+  <p class="ask"><b>Our sentence:</b> We already have …, and we are not using it for ….</p>
+  <div class="lines"><i></i></div>
+
+  <div class="final">
+    <p class="mono">For your final project</p>
+    <h2>What will you start with?</h2>
+    <p style="font-size:9pt;margin-top:4pt;color:#6B655B">Your final presentation must show the smallest first step you can afford. Start now: list what your team already has, and how much it could afford to lose.</p>
+  </div>
+
+  <div class="hw">
+    <h2>Before Session 08</h2>
+    <ol>
+      <li>Read Rules 23, 26, 27, 28 and 29 in Section 03. For each one, write one way your team could use it.</li>
+      <li>Ask one real seller in your city the price of the one tool, material or service your idea needs most. Bring it.</li>
+      <li>Map keeper: keep this team asset list. Chaos-log keeper: add one new entry to your team’s chaos log.</li>
+    </ol>
+  </div>
+
+  <p class="src" style="margin-top:8pt">References (APA 7)</p>
+  <p class="ref">Baker, T., &amp; Nelson, R. E. (2005). Creating something from nothing: Resource construction through entrepreneurial bricolage. <i>Administrative Science Quarterly, 50</i>(3), 329–366. https://doi.org/10.2189/asqu.2005.50.3.329</p>
+  <p class="ref">Sarasvathy, S. D. (2001). Causation and effectuation: Toward a theoretical shift from economic inevitability to entrepreneurial contingency. <i>Academy of Management Review, 26</i>(2), 243–263. https://doi.org/10.5465/amr.2001.4378020</p>
+  <p class="ref">Sternberg, M. (2026). <i>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</i>. Son of a Botanist Productions. https://starvechaos.com</p>
+  <div class="foot"><span>Published by Son of a Botanist Productions LLC · © 2026 Marc Sternberg. All rights reserved.</span><span>2 / 2</span></div>
+</section>
+<p class="pub">Hunger, Curiosity &amp; Chaos: 101 Ways Entrepreneurs Think · Marc Sternberg<br>Published by Son of a Botanist Productions LLC · &copy; 2026 Marc Sternberg. All rights reserved.</p>
+</body></html>
