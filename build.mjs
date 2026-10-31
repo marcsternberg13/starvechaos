@@ -244,7 +244,27 @@ write("/open/", page({
 <p class="kicker">Open to everyone</p>
 <h1>Open notes</h1>
 <p class="lede">Free ideas, definitions and tools from the book. No password needed.</p>
-<div class="placeholder">Open articles will appear here.</div>
+<article class="book-body">
+<h2>Failure is not chaos. Chaos is chaos.</h2>
+<p>Entrepreneurs are not afraid of being wrong. They fail fast, change direction, spread their bets and start again. What they fear is chaos that is uncontrolled, not understood and unproductive. A failure you planned for, that cost what you could afford and taught you which belief was wrong, is information. So the book asks one thing of every founder: starve chaos. Feed the business with evidence, clear choices and small bets you can survive.</p>
+<h2>Three forces</h2>
+<p><strong>Hunger</strong> is the drive to build, to earn and to make something real. <strong>Curiosity</strong> is the drive to find out: it turns beliefs into questions and questions into tests. <strong>Chaos</strong> is the world you build in: uncertain, changing and often unfair. It is not your enemy. It is your working conditions.</p>
+<h2>Two definitions</h2>
+<p>An <strong>entrepreneur</strong> is a person who sees a need that is not being met, gathers the resources to meet it, and carries the result, including the risk of failure.</p>
+<p>An <strong>intrapreneur</strong> (a term made popular by Pinchot, 1985) is someone who brings a successful entrepreneur's skills and mindset inside a large organization, to build something new for it.</p>
+<h2>Five questions for your next decision</h2>
+<ol>
+<li>Who is this for, and who is it not for?</li>
+<li>What would have to be true for this to work, and which of those am I least sure of?</li>
+<li>What can I afford to lose, and when will I stop?</li>
+<li>What does this cost all the way down to my pocket?</li>
+<li>What will I learn, whatever happens?</li>
+</ol>
+<p>More from the book, including the indexes and the full reference list, is open at <a href="/book/back/">the back of the book</a>.</p>
+<h2>Source</h2>
+<p class="ref">Pinchot, G., III. (1985). <em>Intrapreneuring: Why you don't have to leave the corporation to become an entrepreneur</em>. Harper &amp; Row.</p>
+<p class="ref">All other text: Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em>.</p>
+</article>
 `,
 }));
 
