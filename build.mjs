@@ -1,6 +1,7 @@
 // Builds the static site into ./public. No dependencies: `node build.mjs`.
 // Cloudflare Pages runs this on every push (build command: node build.mjs).
 import { mkdirSync, writeFileSync, rmSync, readFileSync, cpSync, existsSync } from "node:fs";
+import { loadRules, linkRuleRefs } from "./src/rulerefs.mjs";
 import { dirname, join } from "node:path";
 import { site, sections, parts, weekOf, bookParts, weeks, classSessions } from "./src/config.mjs";
 import { homePage, aboutPage } from "./src/home.mjs";
@@ -82,9 +83,10 @@ write("/", homePage());
 
 /* ---------- Book + Class: indexes and chapter pages ---------- */
 // Book text lives in content/book/<slug>.html (generated from the manuscript).
+const RULES = loadRules();
 const bookHtml = (slug) => {
   const f = join("content", "book", `${slug}.html`);
-  return existsSync(f) ? readFileSync(f, "utf8") : "";
+  return existsSync(f) ? linkRuleRefs(readFileSync(f, "utf8"), slug, RULES) : "";
 };
 const lockTag = (gate) =>
   gate === "open" ? `<span class="lock open">OPEN</span>`

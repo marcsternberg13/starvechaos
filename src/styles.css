@@ -234,3 +234,15 @@ fieldset.qq legend { font-weight:600; padding:0 4px; line-height:1.35; }
 label.opt { display:flex; gap:10px; align-items:flex-start; font-weight:400; padding:10px 4px; min-height:48px; border-top:1px solid var(--line); margin:0; }
 label.opt input { width:22px; height:22px; margin-top:2px; flex:none; }
 select, textarea { width:100%; font-size:1.1rem; padding:12px; border-radius:8px; border:1px solid var(--line); background:var(--paper); color:var(--ink); font-family:inherit; }
+
+/* Rule callouts: each referenced rule, written out under the paragraph that cites it */
+.rule-callouts { display: flex; flex-direction: column; gap: 8px; margin: -.3em 0 1.2em; }
+li .rule-callouts { margin: .5em 0 .3em; }
+.rule-callout { display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; min-height: 48px; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--teal); border-radius: 0 var(--radius) var(--radius) 0; color: var(--ink); text-decoration: none; }
+.rule-callout:hover, .rule-callout:focus-visible { border-color: var(--teal); }
+.rule-callout .rc-num { font: 700 .75rem/1.2 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }
+.rule-callout .rc-title { font: 700 1.02rem/1.35 var(--serif); }
+.book-body a.rule-ref { white-space: nowrap; }
+.rc-cell { display: block; color: var(--muted); }
+.rc-cell + .rc-cell { margin-top: 8px; }
+.rc-cell a.rule-ref { display: block; font-weight: 700; }
