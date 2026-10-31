@@ -111,6 +111,23 @@ const special = {
   31: ["Final presentations, day one", "Teams present their idea and plan: 12 slides, eight minutes plus four minutes of questions. Scored out of 100."],
   32: ["Final presentations, day two", "The remaining teams present. Then we close the course: starve chaos."],
 };
+// Finished materials per session. A session without an entry shows a short "posted when the session opens" note.
+const materials = {
+  1: {
+    slides: "/class/session-01/slides/",
+    handout: "/class/session-01/handout.pdf",
+    homework: [
+      "Read Part 1 of the book.",
+      "Write down three problems you saw in your city this week. Keep them on your phone and bring them to Session 2.",
+    ],
+    final: [
+      "Where are your future customers already gathered? Name the place and the time of day.",
+      "Which row of the 19-row table will be hardest for your business, and why?",
+      "What would one small, cheap test of your idea look like, with an answer on the same day?",
+    ],
+    source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em>, Parts 1 and 5. https://starvechaos.com",
+  },
+};
 const sessionWords = ["Entrepreneurship","Chaos","Owner","Strategy","Opportunity","Gap","Resources","Bootstrapping","Bet","Scenario","Question","Evidence","Failure","Pivot","Focus","Priority","Feedback","Hypothesis","Sale","Channel","Margin","Runway","Team","Conflict","Bottleneck","System","Product","Prototype","Plan","Rehearsal","Pitch","Starve"];
 export const classSessions = [];
 for (const w of weeks) {
@@ -127,6 +144,7 @@ for (const w of weeks) {
       phrase: phrases[n] || null,
       card: [6, 10, 14, 20, 22, 26, 28].includes(n),
       log: half === "B" && n <= 28,
+      materials: materials[n] || null,
     };
     classSessions.push(session);
   }

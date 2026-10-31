@@ -217,3 +217,11 @@ footer .wrap { padding-top: 18px; padding-bottom: 28px; }
 
 .small{font-size:16px;opacity:.75;margin-top:12px}
 .book-body th[scope=row]{text-align:left;white-space:nowrap;padding-right:14px}
+
+/* "For your final project" box on class session pages */
+.final-box { border: 2px solid var(--ink); border-top: 8px solid var(--accent); background: var(--card); padding: 16px 18px 6px; margin: 24px 0 12px; }
+.final-box .kicker { color: var(--accent); }
+.final-box ol { padding-left: 1.3em; }
+.final-box li { margin-bottom: .6em; }
+.mat { list-style: none; padding: 0; }
+.mat li { padding: 10px 0; border-bottom: 1px solid var(--line); }

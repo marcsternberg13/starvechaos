@@ -203,6 +203,26 @@ ${weekBlock(10, 14)}
 ${weekBlock(15, 16)}
 `,
 }));
+const materialsBlock = (x) => {
+  const m = x.materials;
+  if (!m) return `<h2>Materials</h2>\n<p>Materials are posted when the session opens.</p>`;
+  return `<h2>Materials</h2>
+<ul class="mat">
+<li><strong>Reading:</strong> ${readLink(x.week.read)}</li>
+<li><strong>Slides:</strong> <a href="${m.slides}">Open the slides</a></li>
+<li><strong>Handout:</strong> <a href="${m.handout}">Download the handout</a> (PDF, two pages)</li>
+<li><strong>Quiz:</strong> on your phone in class. Scan the code on the screen, then type the 6-digit code.</li>
+<li><strong>Exit question:</strong> on your phone at the end of class, the same way.</li>
+</ul>
+<h3>Homework</h3>
+<ol>${m.homework.map((h) => `<li>${esc(h)}</li>`).join("")}</ol>
+<div class="final-box">
+<p class="kicker">For your final project</p>
+<p><strong>Your final presentation must answer all 19 rows of the component table for your own business.</strong> Start with these questions:</p>
+<ol>${m.final.map((h) => `<li>${esc(h)}</li>`).join("")}</ol>
+</div>
+<p class="ref small">Source: ${m.source}</p>`;
+};
 for (const x of classSessions) {
   const w = x.week;
   write(`/class/${x.slug}/`, page({
@@ -226,8 +246,9 @@ ${x.card ? `<tr><th scope="row">Chaos card</th><td>Yes. Expect one today.</td></
 ${x.log ? `<tr><th scope="row">Chaos log</th><td>Add one entry before you leave.</td></tr>` : ""}
 </tbody>
 </table></div>
+${materialsBlock(x)}
 <h2>The session</h2>
-<p>Warm-up quiz and one word (10 minutes) · the story and the ideas (15) · class exercise (30) · group work (25) · discussion and exit question on your phone (10).</p>
+<p>Two hours: warm-up quiz and one word (15 minutes) · the story and the ideas (20) · class exercise (35) · break (5) · group work (35) · discussion and exit question on your phone (10).</p>
 <p class="small">The reading page has its own password, given in class.</p>
 </article>
 ${pager("class", classOrder, classLabel, x.slug)}
