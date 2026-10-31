@@ -217,7 +217,7 @@ const materialsBlock = (x) => {
 <ol>${m.homework.map((h) => `<li>${esc(h)}</li>`).join("")}</ol>
 <div class="final-box">
 <p class="kicker">For your final project</p>
-<p><strong>Your final presentation must answer all 19 rows of the component table for your own business.</strong> Start with these questions:</p>
+<p><strong>Your final presentation must answer all 19 parts of a business for your own idea.</strong> Start with these questions:</p>
 <ol>${m.final.map((h) => `<li>${esc(h)}</li>`).join("")}</ol>
 </div>
 <p class="ref small">Source: ${m.source}</p>`;

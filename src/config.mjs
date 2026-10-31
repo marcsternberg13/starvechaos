@@ -57,10 +57,10 @@ export const bookParts = {
 // read = the book page for that week; words = the one word for Session A and Session B;
 // card = true when a chaos card is played that week.
 export const weeks = [
-  { n: 1, title: "The Lemonade Stand", focus: "Introduction and team forming", words: ["Entrepreneurship", "Chaos"], read: "part-1", story: "The lemonade stand", team: "Form your team of four or five. Fill in the component table for a local idea. Choose the one real problem you will work on all semester." },
+  { n: 1, title: "The Lemonade Stand", focus: "Introduction and team forming", words: ["Entrepreneurship", "Chaos"], read: "part-1", story: "The lemonade stand", team: "Form your team of four or five. Plan a stand of your own: the 19 parts of a business. Choose the one real problem you will work on all semester." },
   ...sections.map((s) => ({ n: weekOf(s.slug), section: s.slug, title: s.title, focus: `Section ${s.slug}: ${s.title}`, read: s.slug })),
   { n: 9, title: "Midpoint Pitch", focus: "Spoken idea pitches, then revise the idea", words: ["Feedback", "Hypothesis"], read: "part-3", story: "Pitching as the cheapest test", team: "Session A: give a three-minute spoken pitch, no slides, then take four minutes of feedback. Scored out of 20. Session B: revise your idea using the feedback." },
-  { n: 15, title: "Build the Plan and the Deck", focus: "Turn the semester's work into a plan and a slide deck", words: ["Plan", "Rehearsal"], read: "part-4", story: "Five questions for your next decision", team: "Build your plan and your 12-slide deck. Rehearse and get feedback. Every row of the Week 1 component table must be answered." },
+  { n: 15, title: "Build the Plan and the Deck", focus: "Turn the semester's work into a plan and a slide deck", words: ["Plan", "Rehearsal"], read: "part-4", story: "Five questions for your next decision", team: "Build your plan and your 12-slide deck. Rehearse and get feedback. Every part of the Week 1 business table must be answered." },
   { n: 16, title: "Final Presentations", focus: "Each team presents its business idea and plan", words: ["Pitch", "Starve"], read: "part-4", story: "Each team presents", team: "Present your idea and plan: 12 slides, eight minutes plus four minutes of questions. Scored out of 100." },
 ].sort((a, b) => a.n - b.n);
 
@@ -102,11 +102,11 @@ const phrases = {
   24: [3, "Every great company starts with a genius in a garage"], 28: [7, "The first mover wins"],
 };
 const special = {
-  1: ["The lemonade stand", "Hear the lemonade stand story, unpack it together, and fill in the component table for a local idea."],
+  1: ["The lemonade stand", "Hear the lemonade stand story, unpack it together, and plan a stand of your own: the 19 parts of a business."],
   2: ["Teams and key words", "Form your team of four or five, learn the course's key words, and choose the one real problem you will work on all semester."],
   17: ["Midpoint pitches", "Give your three-minute spoken pitch, no slides, then take four minutes of feedback. Scored out of 20."],
   18: ["Revise the idea", "Use the feedback from your pitch to revise your idea before the second half of the course."],
-  29: ["Build the plan and the deck", "Build your plan and your 12-slide deck. Every row of the Week 1 component table must be answered."],
+  29: ["Build the plan and the deck", "Build your plan and your 12-slide deck. Every part of the Week 1 business table must be answered."],
   30: ["Rehearse", "Rehearse your presentation and get feedback from the class and the instructor."],
   31: ["Final presentations, day one", "Teams present their idea and plan: 12 slides, eight minutes plus four minutes of questions. Scored out of 100."],
   32: ["Final presentations, day two", "The remaining teams present. Then we close the course: starve chaos."],
@@ -123,7 +123,7 @@ const materials = {
     ],
     final: [
       "Where are your future customers already gathered? Name the place and the time of day.",
-      "Which row of the 19-row table will be hardest for your business, and why?",
+      "Which of the 19 parts of a business will be hardest for you, and why?",
       "What would one small, cheap test of your idea look like, with an answer on the same day?",
     ],
     source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Parts 1 and 5). Son of a Botanist Productions. https://starvechaos.com",
