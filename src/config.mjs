@@ -155,6 +155,28 @@ const materials = {
     ],
     source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Parts 1 and 5). Son of a Botanist Productions. https://starvechaos.com · Pinchot, G., III. (1985). <em>Intrapreneuring: Why you don't have to leave the corporation to become an entrepreneur</em>. Harper &amp; Row. · Stevenson, H. H. (1983). <em>A perspective on entrepreneurship</em> (Background Note 384-131). Harvard Business School. · Lau, J. K. L., Ozono, H., Kuratomi, K., Komiya, A., &amp; Murayama, K. (2020). Shared striatal activity in decisions to satisfy curiosity and hunger at the risk of electric shocks. <em>Nature Human Behaviour, 4</em>(5), 531–543. https://doi.org/10.1038/s41562-020-0848-3",
   },
+  3: {
+    steps: [
+      { what: "Warm-up quiz", href: "/class/session-03/quiz/?q=S03-warmup", note: "On your phone. Type the code from the screen. Not graded." },
+      { what: "The lesson: white towels", href: "/class/session-03/slides/", note: "Slides. A boring industry on purpose, choosing who to serve, and two rules." },
+      { what: "Class exercise and group work: The tailor's wall", href: "/class/session-03/exercise/", note: "Slides. Choose a customer for a tailoring shop, write its wall, then your team's customer.", extra: { label: "Open the exercise sheet", href: "/class/session-03/sheet/", pdf: "/class/session-03/sheet.pdf" } },
+      { what: "Session 3 quiz", href: "/class/session-03/quiz/?q=S03-quiz", note: "On your phone. Ten graded questions on today." },
+      { what: "Exit question", href: "/class/session-03/quiz/?q=S03-exit", note: "On your phone, before you leave." },
+    ],
+    read: { what: "Read Section 01 again", href: "/book/01/", note: "Rules 3, 4, 5, 7, 8, 9 and 10. It has its own password." },
+    homework: [
+      "Read Rules 3, 4, 5, 7, 8, 9 and 10 in Section 01 again. Mark the one you most disagree with and bring it to Session 4.",
+      "Look at one small business in your city this week. Who is it for? Who does it turn away?",
+      "Write down your answer: why would a green spa care how its towels are washed? Bring it to Session 4.",
+      "Map keepers: keep your team's Problem Map box 1 and your two walls for Session 4.",
+    ],
+    final: [
+      "Who exactly is your customer? Can you see them, count them and talk to them?",
+      "Which group will your team not serve, even if they would pay? Why?",
+      "Is each of your walls a real wall, or a weight that a higher price would change?",
+    ],
+    source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Section 01 and Part 5). Son of a Botanist Productions. https://starvechaos.com · Vanneste, B. S. (2017). How much do industry, corporation, and business matter, really? A meta-analysis. <em>Strategy Science, 2</em>(2), 121–139. https://doi.org/10.1287/stsc.2017.0029 · Tetlock, P. E., Kristel, O. V., Elson, S. B., Green, M. C., &amp; Lerner, J. S. (2000). The psychology of the unthinkable: Taboo trade-offs, forbidden base rates, and heretical counterfactuals. <em>Journal of Personality and Social Psychology, 78</em>(5), 853–870. https://doi.org/10.1037/0022-3514.78.5.853 · Porter, M. E. (1996). What is strategy? <em>Harvard Business Review, 74</em>(6), 61–78.",
+  },
 };
 const sessionWords = ["Entrepreneurship","Chaos","Owner","Strategy","Opportunity","Gap","Resources","Bootstrapping","Bet","Scenario","Question","Evidence","Failure","Pivot","Focus","Priority","Feedback","Hypothesis","Sale","Channel","Margin","Runway","Team","Conflict","Bottleneck","System","Product","Prototype","Plan","Rehearsal","Pitch","Starve"];
 export const classSessions = [];

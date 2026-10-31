@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Session 03 · Exercise sheet · The tailor’s wall</title>
+<style>
+@font-face{font-family:Oswald;font-weight:700;src:url(/fonts/oswald-latin-700-normal.woff2)}
+@font-face{font-family:"Source Serif 4";font-weight:400;src:url(/fonts/source-serif-4-latin-400-normal.woff2)}
+@font-face{font-family:"Source Serif 4";font-style:italic;font-weight:400;src:url(/fonts/source-serif-4-latin-400-italic.woff2)}
+@font-face{font-family:"IBM Plex Mono";font-weight:400;src:url(/fonts/ibm-plex-mono-latin-400-normal.woff2)}
+@page{size:Letter;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Source Serif 4",Georgia,serif;color:#16130F;font-size:10pt;line-height:1.3}
+.page{width:8.5in;height:11in;padding:.4in .5in .55in;position:relative;page-break-after:always;overflow:hidden;background:#fff}
+.page:last-of-type{page-break-after:auto}
+.mono{font-family:"IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;font-size:7.5pt}
+.top{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1.5pt solid #16130F;padding-bottom:6pt}
+h1{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;font-size:36pt;line-height:.9}
+h2{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;font-size:14pt;line-height:1;margin-top:12pt}
+.lead{font-style:italic;font-size:10pt;margin-top:6pt}
+table{width:100%;border-collapse:collapse;margin-top:6pt}
+th{font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:7pt;letter-spacing:.1em;text-transform:uppercase;text-align:left;color:#6B655B;padding:0 4pt 3pt 0;border-bottom:1pt solid #16130F}
+td{border-bottom:.5pt solid #CFC7B8;padding:4pt 6pt 4pt 0;vertical-align:top}
+td.c{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:700;font-size:13pt;width:.35in;color:#C8401E}
+td.box{width:.55in;border-left:.5pt solid #CFC7B8}
+td.cause{width:1.6in;border-left:.5pt solid #CFC7B8}
+.key{display:flex;gap:10pt;margin-top:8pt;font-size:8.5pt}
+.key div{border-top:4pt solid #17707A;padding-top:3pt;flex:1}
+.key b{font-family:Oswald,"Arial Narrow",sans-serif;text-transform:uppercase;font-size:9pt}
+.lines td.l{font-family:"IBM Plex Mono",monospace;font-size:7.5pt;letter-spacing:.06em;text-transform:uppercase;width:1.9in;color:#6B655B;height:.34in}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:4pt 18pt}
+.field{display:flex;gap:6pt;align-items:flex-end;margin-top:7pt}
+.field span{font-family:"IBM Plex Mono",monospace;font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.field i{flex:1;border-bottom:.75pt solid #6B655B;height:15pt}
+.ref{font-size:7pt;color:#6B655B;margin-top:5pt;padding-left:1.4em;text-indent:-1.4em}
+.src{font-family:"IBM Plex Mono",monospace;font-size:6.5pt;color:#6B655B;margin-top:6pt}
+.foot{position:absolute;left:.5in;right:.5in;bottom:.25in;font-family:"IBM Plex Mono",monospace;font-size:6.5pt;color:#6B655B;line-height:1.5}
+.gl{columns:2;column-gap:18pt;margin-top:8pt}
+.gl p{break-inside:avoid;font-size:8.1pt;line-height:1.25;margin-bottom:4.2pt}
+.gl b{font-family:Oswald,"Arial Narrow",sans-serif;text-transform:uppercase;font-size:8.6pt;letter-spacing:.02em}
+.gl b i{font-style:normal;color:#C8401E;font-family:"IBM Plex Mono",monospace;font-size:6.5pt;margin-right:3pt}
+.gl small{font-family:"IBM Plex Mono",monospace;font-size:6.3pt;color:#6B655B;white-space:nowrap}
+.bar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;max-width:8.5in;margin:0 auto;padding:14px 16px;font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.bar a{color:#C8401E;min-height:44px;display:inline-flex;align-items:center}
+@media screen{html{background:#E7E1D6}.page{margin:0 auto 18px}}
+@media screen and (max-width:860px){
+ body{font-size:17px}
+ .page{width:auto;height:auto;padding:22px 18px 28px;overflow:visible}
+ h1{font-size:40px} h2{font-size:22px;margin-top:22px}
+ .top{flex-direction:column;align-items:flex-start;gap:8px}
+ .lead{font-size:17px} .mono{font-size:11px}
+ td{font-size:16px} td.c{font-size:20px}
+ td.box,td.cause,.lines,.field,.fill{display:none}
+ table thead{display:none}
+ .key{flex-direction:column;font-size:16px} .key b{font-size:16px}
+ .two{display:block}
+ .gl{columns:1} .gl p{font-size:16px;margin-bottom:12px} .gl b{font-size:17px} .gl small{font-size:12px;white-space:normal}
+ .ref{font-size:13px} .src{font-size:12px}
+ .foot{position:static;margin-top:24px;font-size:12px}
+}
+@media print{.bar{display:none}html{background:#fff}}
+</style><style>
+td.g{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;width:1.55in}
+td.tick{width:.5in;border-left:.5pt solid #CFC7B8}
+.wall{border-left:4pt solid #C8401E;padding:4pt 0 4pt 8pt;margin-top:6pt;font-size:9.5pt}
+@media screen and (max-width:860px){td.tick{display:none}.wall{font-size:16px}}
+</style></head><body>
+<div class="bar"><a href="/class/session-03/">Back to the session</a><a href="/class/session-03/sheet.pdf" download>Download the PDF</a></div>
+<div class="page">
+<div class="top"><div><p class="mono" style="color:#17707A">Session 03 · Class exercise · pairs or threes</p><h1>The tailor’s wall</h1></div><p class="mono" style="text-align:right"><span class="fill">Names<br>__________________________</span></p></div>
+<p class="lead">A small tailoring shop in your city has two tailors and one sewing room. It has time to serve one kind of customer very well. Picture a shop you know, and choose for it.</p>
+<h2>1 · Choose one group</h2>
+<table><thead><tr><th>Group</th><th>What they want</th><th>Our choice</th></tr></thead><tr><td class="g">A · Wedding families</td><td>Perfect fit, fixed dates, large orders a few times a year</td><td class="tick"></td></tr><tr><td class="g">B · Office workers</td><td>Suits and shirts, steady repairs, fast and on time</td><td class="tick"></td></tr><tr><td class="g">C · Students</td><td>Hems and repairs at the lowest price, often the same day</td><td class="tick"></td></tr><tr><td class="g">D · Schools</td><td>Many uniforms in one order, once a year, sizes for every child</td><td class="tick"></td></tr><tr><td class="g">E · Clothing shops</td><td>Alterations for their own buyers, many small jobs, low price per piece</td><td class="tick"></td></tr></table>
+<div class="fill"><div class="field"><span>Our group</span><i></i></div><div class="field"><span>Reason 1</span><i></i></div><div class="field"><span>Reason 2</span><i></i></div></div>
+<h2>2 · Write the wall</h2>
+<p class="wall">We do not serve <b>…</b>, even if <b>…</b>, because we believe <b>…</b>.</p>
+<div class="fill"><div class="field"><span>Wall 1</span><i></i></div><div class="field"><span></span><i></i></div><div class="field"><span>Wall 2</span><i></i></div><div class="field"><span></span><i></i></div></div>
+<h2>3 · Test your wall: three customers walk in</h2>
+<table><thead><tr><th></th><th>Who walks in</th><th>In or out?</th></tr></thead><tr><td class="c">1</td><td>A customer wants a copy of a famous brand’s jacket, label and all. Pays double.</td><td class="tick"></td></tr><tr><td class="c">2</td><td>A customer from a group you left out. Needs one small job today. Pays on time.</td><td class="tick"></td></tr><tr><td class="c">3</td><td>A customer from your group wants a rush job in two days. Your tailors are full.</td><td class="tick"></td></tr></table>
+<p style="margin-top:6pt"><b>Wall or weight?</b> If a higher price would change your answer, it was a weight. If nothing would change it, it is a wall.</p>
+<p class="src">Source: Sternberg (2026), Section 01 (Rule 2). The case and the customers are written for this class.</p>
+<p class="foot">Hunger, Curiosity &amp; Chaos: 101 Ways Entrepreneurs Think · Marc Sternberg<br>Published by Son of a Botanist Productions LLC · &copy; 2026 Marc Sternberg. All rights reserved.</p>
+</div>
+<div class="page">
+<div class="top"><div><p class="mono" style="color:#17707A">Session 03 · Group work · teams of 4 or 5</p><h1 style="font-size:30pt">Your customer, your walls</h1></div><p class="mono" style="text-align:right">The map keeper writes</p></div>
+<h2>Problem Map · box 1 · Customer (first draft)</h2>
+<p class="lead">Can you see them, count them and talk to them? “Everyone” is not a customer.</p>
+<div class="fill"><div class="field"><span>Who exactly</span><i></i></div><div class="field"><span>Where you find them</span><i></i></div><div class="field"><span>When the problem hits</span><i></i></div><div class="field"><span>How many, as a guess</span><i></i></div></div>
+<h2>Our two walls</h2>
+<p class="wall">We do not serve <b>…</b>, even if <b>…</b>, because we believe <b>…</b>.</p>
+<div class="fill"><div class="field"><span>Wall 1</span><i></i></div><div class="field"><span></span><i></i></div><div class="field"><span>Wall 2</span><i></i></div><div class="field"><span></span><i></i></div><div class="field"><span>The team next to us said: wall or weight?</span><i></i></div></div>
+<h2>Chaos log · one entry</h2>
+<div class="fill"><div class="field"><span>What happened? (one thing about our customer we do not know yet)</span><i></i></div><div class="field"><span>Failure we understand, or chaos we do not?</span><i></i></div><div class="field"><span>What will we do before Session 4?</span><i></i></div></div>
+<h2>For your final project</h2>
+<p style="margin-top:4pt">Who is your customer, and who is outside the wall? Your final presentation names one exact customer. Start now: write the customer, and one group you will not serve.</p>
+<p class="src">Source: Sternberg (2026), Section 01 and Part 5.</p>
+<p class="ref">Sternberg, M. (2026). <i>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</i>. Son of a Botanist Productions. https://starvechaos.com</p>
+<p class="foot">Hunger, Curiosity &amp; Chaos: 101 Ways Entrepreneurs Think · Marc Sternberg<br>Published by Son of a Botanist Productions LLC · &copy; 2026 Marc Sternberg. All rights reserved.</p>
+</div>
+</body></html>
