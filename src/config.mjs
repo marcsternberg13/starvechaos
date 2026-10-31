@@ -134,6 +134,27 @@ const materials = {
     ],
     source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Parts 1 and 5). Son of a Botanist Productions. https://starvechaos.com",
   },
+  2: {
+    steps: [
+      { what: "Warm-up quiz", href: "/class/session-02/quiz/?q=S02-warmup", note: "On your phone. Type the code from the screen. Not graded." },
+      { what: "The lesson: chaos", href: "/class/session-02/slides/", note: "Slides. The story in three parts, two definitions, and where chaos comes from.", extra: { label: "Open the course glossary", href: "/class/session-02/handout/", pdf: "/class/session-02/handout.pdf" } },
+      { what: "Class exercise and group work: Failure or chaos?", href: "/class/session-02/exercise/", note: "Slides. Sort eight cases, then form your team.", extra: { label: "Open the exercise sheet", href: "/class/session-02/sheet/", pdf: "/class/session-02/sheet.pdf" } },
+      { what: "Session 2 quiz", href: "/class/session-02/quiz/?q=S02-quiz", note: "On your phone. Ten graded questions on today." },
+      { what: "Exit question", href: "/class/session-02/quiz/?q=S02-exit", note: "On your phone, before you leave." },
+    ],
+    read: { what: "Read Section 01", href: "/book/01/", note: "General Outlook: the primer and the first twelve rules. It has its own password." },
+    homework: [
+      "Read Section 01 of the book: the primer and the first twelve rules.",
+      "Write one note of your team's problem happening in real life: where, when and who.",
+      "Chaos-log keepers: add one new entry to your team's chaos log.",
+    ],
+    final: [
+      "Which one problem will your team own all semester? Write it in one sentence.",
+      "What is the first thing your team does not know about that problem?",
+      "Which of the four causes of chaos is the biggest danger for your team: unknown numbers, unclear decisions, hidden disagreements or a missed part?",
+    ],
+    source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Parts 1 and 5). Son of a Botanist Productions. https://starvechaos.com · Pinchot, G., III. (1985). <em>Intrapreneuring: Why you don't have to leave the corporation to become an entrepreneur</em>. Harper &amp; Row. · Stevenson, H. H. (1983). <em>A perspective on entrepreneurship</em> (Background Note 384-131). Harvard Business School. · Lau, J. K. L., Ozono, H., Kuratomi, K., Komiya, A., &amp; Murayama, K. (2020). Shared striatal activity in decisions to satisfy curiosity and hunger at the risk of electric shocks. <em>Nature Human Behaviour, 4</em>(5), 531–543. https://doi.org/10.1038/s41562-020-0848-3",
+  },
 };
 const sessionWords = ["Entrepreneurship","Chaos","Owner","Strategy","Opportunity","Gap","Resources","Bootstrapping","Bet","Scenario","Question","Evidence","Failure","Pivot","Focus","Priority","Feedback","Hypothesis","Sale","Channel","Margin","Runway","Team","Conflict","Bottleneck","System","Product","Prototype","Plan","Rehearsal","Pitch","Starve"];
 export const classSessions = [];

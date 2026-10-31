@@ -213,12 +213,12 @@ ${weekBlock(15, 16)}
 const materialsBlock = (x) => {
   const m = x.materials;
   if (!m) return `<h2>Materials</h2>\n<p>Materials are posted when the session opens.</p>`;
-  const step = (st, i) => `<li><a class="step" href="${st.href}"><span class="sn">${i + 1}</span><span class="st"><strong>${esc(st.what)}</strong><span>${esc(st.note)}</span></span></a>${st.extra ? `<p class="subs"><a href="${st.extra.href}">${esc(st.extra.label)}</a> <a class="quiet" href="${m.handoutPdf}" download>(download the PDF)</a></p>` : ""}</li>`;
+  const step = (st, i) => `<li><a class="step" href="${st.href}"><span class="sn">${i + 1}</span><span class="st"><strong>${esc(st.what)}</strong><span>${esc(st.note)}</span></span></a>${st.extra ? `<p class="subs"><a href="${st.extra.href}">${esc(st.extra.label)}</a> <a class="quiet" href="${st.extra.pdf || m.handoutPdf}" download>(download the PDF)</a></p>` : ""}</li>`;
   return `<h2>In class, step by step</h2>
 <ol class="steps">${m.steps.map(step).join("")}</ol>
 <h2>After class</h2>
 <ol class="steps after">
-<li><a class="step" href="${readLinkHref(x.week.read)}"><span class="sn">R</span><span class="st"><strong>Read Part 1</strong><span>The book reading for this week. It has its own password.</span></span></a></li>
+<li><a class="step" href="${m.read ? m.read.href : readLinkHref(x.week.read)}"><span class="sn">R</span><span class="st"><strong>${esc(m.read ? m.read.what : "Read Part 1")}</strong><span>${esc(m.read ? m.read.note : "The book reading for this week. It has its own password.")}</span></span></a></li>
 ${m.later ? `<li><a class="step" href="${m.later.href}"><span class="sn">Q</span><span class="st"><strong>${esc(m.later.what)}</strong><span>${esc(m.later.note)}</span></span></a></li>` : ""}
 </ol>
 <h3>Homework</h3>
@@ -255,7 +255,7 @@ ${x.log ? `<tr><th scope="row">Chaos log</th><td>Add one entry before you leave.
 </table></div>
 ${materialsBlock(x)}
 <h2>The session</h2>
-<p>Two hours: warm-up quiz and one word (15 minutes) · the story and the ideas (20) · class exercise (35) · break (5) · group work (35) · discussion and exit question on your phone (10).</p>
+<p>${x.n === 1 ? "Two hours: opening (15 minutes) · warm-up quiz and one word (10) · the story (20) · group exercise (30) · break (5) · groups present (25) · quiz on your phone (8) · exit question on your phone (7)." : "Two hours: warm-up quiz and one word (15 minutes) · the story and the ideas (20) · class exercise (35) · break (5) · group work (30) · quiz on your phone (8) · exit question on your phone (7)."}</p>
 <p class="small">The reading page has its own password, given in class.</p>
 </article>
 ${pager("class", classOrder, classLabel, x.slug)}

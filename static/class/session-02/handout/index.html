@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Session 02 · Handout · The course glossary</title>
+<style>
+@font-face{font-family:Oswald;font-weight:700;src:url(/fonts/oswald-latin-700-normal.woff2)}
+@font-face{font-family:"Source Serif 4";font-weight:400;src:url(/fonts/source-serif-4-latin-400-normal.woff2)}
+@font-face{font-family:"Source Serif 4";font-style:italic;font-weight:400;src:url(/fonts/source-serif-4-latin-400-italic.woff2)}
+@font-face{font-family:"IBM Plex Mono";font-weight:400;src:url(/fonts/ibm-plex-mono-latin-400-normal.woff2)}
+@page{size:Letter;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Source Serif 4",Georgia,serif;color:#16130F;font-size:10pt;line-height:1.3}
+.page{width:8.5in;height:11in;padding:.4in .5in .55in;position:relative;page-break-after:always;overflow:hidden;background:#fff}
+.page:last-of-type{page-break-after:auto}
+.mono{font-family:"IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;font-size:7.5pt}
+.top{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1.5pt solid #16130F;padding-bottom:6pt}
+h1{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;font-size:36pt;line-height:.9}
+h2{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;font-size:14pt;line-height:1;margin-top:12pt}
+.lead{font-style:italic;font-size:10pt;margin-top:6pt}
+table{width:100%;border-collapse:collapse;margin-top:6pt}
+th{font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:7pt;letter-spacing:.1em;text-transform:uppercase;text-align:left;color:#6B655B;padding:0 4pt 3pt 0;border-bottom:1pt solid #16130F}
+td{border-bottom:.5pt solid #CFC7B8;padding:4pt 6pt 4pt 0;vertical-align:top}
+td.c{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:700;font-size:13pt;width:.35in;color:#C8401E}
+td.box{width:.55in;border-left:.5pt solid #CFC7B8}
+td.cause{width:1.6in;border-left:.5pt solid #CFC7B8}
+.key{display:flex;gap:10pt;margin-top:8pt;font-size:8.5pt}
+.key div{border-top:4pt solid #17707A;padding-top:3pt;flex:1}
+.key b{font-family:Oswald,"Arial Narrow",sans-serif;text-transform:uppercase;font-size:9pt}
+.lines td.l{font-family:"IBM Plex Mono",monospace;font-size:7.5pt;letter-spacing:.06em;text-transform:uppercase;width:1.9in;color:#6B655B;height:.34in}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:4pt 18pt}
+.field{display:flex;gap:6pt;align-items:flex-end;margin-top:7pt}
+.field span{font-family:"IBM Plex Mono",monospace;font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.field i{flex:1;border-bottom:.75pt solid #6B655B;height:15pt}
+.ref{font-size:7pt;color:#6B655B;margin-top:5pt;padding-left:1.4em;text-indent:-1.4em}
+.src{font-family:"IBM Plex Mono",monospace;font-size:6.5pt;color:#6B655B;margin-top:6pt}
+.foot{position:absolute;left:.5in;right:.5in;bottom:.25in;font-family:"IBM Plex Mono",monospace;font-size:6.5pt;color:#6B655B;line-height:1.5}
+.gl{columns:2;column-gap:18pt;margin-top:8pt}
+.gl p{break-inside:avoid;font-size:8.1pt;line-height:1.25;margin-bottom:4.2pt}
+.gl b{font-family:Oswald,"Arial Narrow",sans-serif;text-transform:uppercase;font-size:8.6pt;letter-spacing:.02em}
+.gl b i{font-style:normal;color:#C8401E;font-family:"IBM Plex Mono",monospace;font-size:6.5pt;margin-right:3pt}
+.gl small{font-family:"IBM Plex Mono",monospace;font-size:6.3pt;color:#6B655B;white-space:nowrap}
+.bar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;max-width:8.5in;margin:0 auto;padding:14px 16px;font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.bar a{color:#C8401E;min-height:44px;display:inline-flex;align-items:center}
+@media screen{html{background:#E7E1D6}.page{margin:0 auto 18px}}
+@media screen and (max-width:860px){
+ body{font-size:17px}
+ .page{width:auto;height:auto;padding:22px 18px 28px;overflow:visible}
+ h1{font-size:40px} h2{font-size:22px;margin-top:22px}
+ .top{flex-direction:column;align-items:flex-start;gap:8px}
+ .lead{font-size:17px} .mono{font-size:11px}
+ td{font-size:16px} td.c{font-size:20px}
+ td.box,td.cause,.lines,.field,.fill{display:none}
+ table thead{display:none}
+ .key{flex-direction:column;font-size:16px} .key b{font-size:16px}
+ .two{display:block}
+ .gl{columns:1} .gl p{font-size:16px;margin-bottom:12px} .gl b{font-size:17px} .gl small{font-size:12px;white-space:normal}
+ .ref{font-size:13px} .src{font-size:12px}
+ .foot{position:static;margin-top:24px;font-size:12px}
+}
+@media print{.bar{display:none}html{background:#fff}}
+</style></head><body>
+<div class="bar"><a href="/class/session-02/">Back to the session</a><a href="/class/session-02/handout.pdf" download>Download the PDF</a></div>
+
+<div class="page">
+<div class="top"><div><p class="mono" style="color:#17707A">The Starve Chaos Curriculum · Handout</p><h1>Glossary</h1></div><p class="mono" style="text-align:right">The 32 session words<br>plus intrapreneurship</p></div>
+<p class="lead">One word for each session, in course order. Definitions come from the key terms and text of the book.</p>
+<div class="gl"><p><b><i>01</i>Entrepreneurship</b> Seeing a need that is not being met, gathering the resources to meet it, and carrying the result, including the risk of failure. <small>(Sternberg, 2026, Part 1)</small></p><p><b><i>02</i>Chaos</b> What happens when you do not know why things are going wrong: unknown numbers, unclear decisions, hidden disagreements or a missed part of the business. <small>(Sternberg, 2026, Part 1)</small></p><p><b><i>03</i>Owner</b> The person who carries the result of the business, including the blame. You can be an owner without owning shares. <small>(Sternberg, 2026, Section 01)</small></p><p><b><i>04</i>Strategy</b> A small set of choices about who you serve, what you offer and why customers pick you. <small>(Sternberg, 2026, Section 01)</small></p><p><b><i>05</i>Opportunity</b> A need, a buyer who will pay to meet it, and a way for you to meet it better than the current option. <small>(Sternberg, 2026, Section 02)</small></p><p><b><i>06</i>Gap</b> A need that every current supplier misses. <small>(Sternberg, 2026, Section 02)</small></p><p><b><i>07</i>Resources</b> Everything a business can use: money, time, skills, tools, space, materials and the people you know. <small>(Sternberg, 2026, Section 03)</small></p><p><b><i>08</i>Bootstrapping</b> Building a business with your own money and early sales, without outside investors. <small>(Sternberg, 2026, Section 03)</small></p><p><b><i>09</i>Bet</b> Any commitment of money, time or reputation whose result you cannot know in advance. <small>(Sternberg, 2026, Section 04)</small></p><p><b><i>10</i>Scenario</b> A believable story about one possible future, used to test a plan. A scenario is not a forecast. <small>(Sternberg, 2026, Section 04)</small></p><p><b><i>11</i>Question</b> An open question cannot be answered with yes or no, such as “What happened?” or “Tell me more.” <small>(Sternberg, 2026, Section 05)</small></p><p><b><i>12</i>Evidence</b> What people actually did, counted or recorded. Opinions are weak evidence; behavior is strong evidence. <small>(Sternberg, 2026, Section 05)</small></p><p><b><i>13</i>Failure</b> A result that does not meet the goal. Some failures are cheap and useful; others are expensive and teach nothing. <small>(Sternberg, 2026, Section 06)</small></p><p><b><i>14</i>Pivot</b> A deliberate change of direction based on what you learned. <small>(Sternberg, 2026, Section 06; Ries, 2011)</small></p><p><b><i>15</i>Focus</b> Putting limited time, money and attention on a few chosen things. <small>(Sternberg, 2026, Section 07)</small></p><p><b><i>16</i>Priority</b> The thing that comes first when you cannot do everything. <small>(Sternberg, 2026, Section 07)</small></p><p><b><i>17</i>Feedback</b> Information from what customers do and say that tells you what to change next. <small>(Sternberg, 2026, Part 1)</small></p><p><b><i>18</i>Hypothesis</b> A guess stated so clearly that a test can prove it wrong. <small>(Sternberg, 2026, Section 05)</small></p><p><b><i>19</i>Sale</b> The conversation that turns a buyer’s readiness to listen into a yes. <small>(Sternberg, 2026, Section 08)</small></p><p><b><i>20</i>Channel</b> The path a product takes to the customer: your own shop, a market stall, a website, a distributor or a marketplace. <small>(Sternberg, 2026, Section 08)</small></p><p><b><i>21</i>Margin</b> The share of the price left after costs. Gross margin subtracts only the product’s cost; net margin subtracts all costs. <small>(Sternberg, 2026, Section 09)</small></p><p><b><i>22</i>Runway</b> How many months your cash will last at your current spending. <small>(Sternberg, 2026, Section 09)</small></p><p><b><i>23</i>Team</b> A small group with a shared goal, shared responsibility for the result and members who depend on each other. <small>(Sternberg, 2026, Section 10; Hackman, 2002)</small></p><p><b><i>24</i>Conflict</b> Task conflict is disagreement about the work, which can help. Relationship conflict is personal, and it hurts. <small>(Sternberg, 2026, Section 10; Jehn, 1995)</small></p><p><b><i>25</i>Bottleneck</b> The one step, part or supplier that limits how fast the whole operation can move. <small>(Sternberg, 2026, Section 11; Goldratt &amp; Cox, 1984)</small></p><p><b><i>26</i>System</b> Work you repeat, turned into written routines, so the business runs well even when you are not in the room. <small>(Sternberg, 2026, Section 11)</small></p><p><b><i>27</i>Product</b> What the customer gets: a physical item, a service, software or a mix. <small>(Sternberg, 2026, Section 12)</small></p><p><b><i>28</i>Prototype</b> An early, rough working version used to learn. <small>(Sternberg, 2026, Section 12)</small></p><p><b><i>29</i>Plan</b> Your best current guess about how the business will work. Treat it as a hypothesis, and change it when the evidence is clear. <small>(Sternberg, 2026, Section 05)</small></p><p><b><i>30</i>Rehearsal</b> Practicing your presentation in front of others before the real one, to get feedback and fix it. <small>(Sternberg, 2026, Part 5)</small></p><p><b><i>31</i>Pitch</b> A short case for your idea, made to the people who would have to say yes. It is the cheapest test of an idea. <small>(Sternberg, 2026, Part 5)</small></p><p><b><i>32</i>Starve</b> To starve chaos: stop feeding it guesses, vague plans, hidden disagreements and numbers you have not checked. <small>(Sternberg, 2026, Part 1)</small></p><p><b><i>+</i>Intrapreneurship</b> Bringing a successful entrepreneur’s skills and mindset inside a large organization. <small>(Sternberg, 2026, Part 1; Pinchot, 1985)</small></p></div>
+<p class="mono" style="margin-top:4pt;color:#6B655B">References</p>
+<p class="ref">Goldratt, E. M., &amp; Cox, J. (1984). <i>The goal: Excellence in manufacturing</i>. North River Press.</p><p class="ref">Hackman, J. R. (2002). <i>Leading teams: Setting the stage for great performances</i>. Harvard Business School Press.</p><p class="ref">Jehn, K. A. (1995). A multimethod examination of the benefits and detriments of intragroup conflict. <i>Administrative Science Quarterly, 40</i>(2), 256–282. https://doi.org/10.2307/2393638</p><p class="ref">Pinchot, G., III. (1985). <i>Intrapreneuring: Why you don’t have to leave the corporation to become an entrepreneur</i>. Harper &amp; Row.</p><p class="ref">Ries, E. (2011). <i>The lean startup: How today’s entrepreneurs use continuous innovation to create radically successful businesses</i>. Crown Business.</p><p class="ref">Sternberg, M. (2026). <i>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</i>. Son of a Botanist Productions. https://starvechaos.com</p>
+<p class="foot">Hunger, Curiosity &amp; Chaos: 101 Ways Entrepreneurs Think · Marc Sternberg<br>Published by Son of a Botanist Productions LLC · &copy; 2026 Marc Sternberg. All rights reserved.</p>
+</div>
+</body></html>
