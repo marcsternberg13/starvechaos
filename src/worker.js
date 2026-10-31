@@ -5,6 +5,7 @@ import {
   keyForPath, hasCode, makeToken, checkToken, cookieName, readCookie,
   setCookie, codeMatches, safeNext,
 } from "../lib/auth.js";
+import { quizApi, isTeacher } from "./quiz.js";
 
 function redirect(location, cookies = []) {
   const headers = new Headers({ Location: location, "Cache-Control": "no-store" });
@@ -20,12 +21,13 @@ async function login(request, env) {
   const key = keyForPath(next);
   const back = (err) => `/login/?next=${encodeURIComponent(next)}&err=${err}`;
 
-  if (!env.AUTH_SECRET || !key) return redirect(back("wrong"));
+  if (!env.AUTH_SECRET) return redirect(back("wrong"));
 
-  // Marc's master password opens every chapter.
+  // Marc's master password opens every chapter (and the teacher page).
   if (await codeMatches(code, "all")) {
     return redirect(next, [setCookie(cookieName("all"), await makeToken(env, "all"))]);
   }
+  if (!key) return redirect(back("wrong"));
 
   if (!hasCode(key)) return redirect(back("closed"));
   if (!(await codeMatches(code, key))) return redirect(back("wrong"));
@@ -76,6 +78,23 @@ export default {
     const { pathname } = new URL(request.url);
     if (pathname === "/api/login") return login(request, env);
     if (pathname === "/api/logout") return logout(request);
+    if (pathname.startsWith("/api/quiz/") || pathname.startsWith("/api/teacher/")) {
+      return quizApi(request, env, new URL(request.url));
+    }
+    // The teacher page opens only with the master password.
+    if (pathname.startsWith("/class/teacher")) {
+      if (!(await isTeacher(request, env))) {
+        const url = new URL(request.url);
+        const loginUrl = new URL("/login/", url);
+        loginUrl.searchParams.set("next", "/class/teacher/");
+        return Response.redirect(loginUrl.toString(), 302);
+      }
+      const res = await env.ASSETS.fetch(request);
+      const out = new Response(res.body, res);
+      out.headers.set("Cache-Control", "private, no-store");
+      out.headers.set("X-Robots-Tag", "noindex");
+      return out;
+    }
 
     const key = keyForPath(pathname);
     if (key) return gate(request, env, key);

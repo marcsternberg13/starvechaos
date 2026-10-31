@@ -211,8 +211,7 @@ const materialsBlock = (x) => {
 <li><strong>Reading:</strong> ${readLink(x.week.read)}</li>
 <li><strong>Slides:</strong> <a href="${m.slides}">Open the slides</a></li>
 <li><strong>Handout:</strong> <a href="${m.handout}">Open the handout</a> · <a href="${m.handoutPdf}" download>download the PDF</a></li>
-<li><strong>Quiz:</strong> on your phone in class. Scan the code on the screen, then type the 6-digit code.</li>
-<li><strong>Exit question:</strong> on your phone at the end of class, the same way.</li>
+<li><strong>Quiz and exit question:</strong> <a href="/class/${x.slug}/quiz/">Open the quiz page</a> on your phone in class, then type the code from the screen.</li>
 </ul>
 <h3>Homework</h3>
 <ol>${m.homework.map((h) => `<li>${esc(h)}</li>`).join("")}</ol>
@@ -257,6 +256,120 @@ ${lockLink("class")}
   }));
 }
 
+
+/* ---------- Quiz pages (one per session; content comes from the quiz database) ---------- */
+const quizScript = (session) => `<script>
+(function () {
+  var S = "${session}", box = document.getElementById("quiz"), state = {};
+  function h(t){var d=document.createElement("div");d.textContent=t;return d.innerHTML;}
+  function api(p, data){return fetch(p,{method:data?"POST":"GET",headers:{"Content-Type":"application/json"},credentials:"same-origin",body:data?JSON.stringify(data):undefined}).then(function(r){return r.json();});}
+  function listView(){
+    api("/api/quiz/list?session="+S).then(function(r){
+      var open=(r.quizzes||[]).filter(function(q){return q.open;});
+      if(!open.length){box.innerHTML='<p class="note">No quiz is open right now. Your teacher opens each one in class.</p>';return;}
+      box.innerHTML=open.map(function(q){return '<button class="btn qpick" data-id="'+h(q.id)+'">'+h(q.title)+'</button>';}).join("");
+      [].forEach.call(box.querySelectorAll(".qpick"),function(b){b.onclick=function(){codeView(b.dataset.id,b.textContent);};});
+    }).catch(function(){box.innerHTML='<p class="note">The quiz could not load. Check your connection and reload the page.</p>';});
+  }
+  function codeView(id,title){
+    state={id:id};
+    box.innerHTML='<h2>'+h(title)+'</h2><form class="gate" id="cf"><label for="c">Code from the screen</label><input id="c" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" required>'+
+      '<label for="n" style="margin-top:14px">Your full name</label><input id="n" type="text" autocomplete="name" required>'+
+      '<label for="g" style="margin-top:14px">Your group</label><select id="g"><option>Group 1</option><option>Group 2</option><option>Group 3</option></select>'+
+      '<p class="err" id="e" role="alert"></p><button class="btn" type="submit">Start</button> <button class="btn ghost" type="button" id="bk">Back</button></form>';
+    document.getElementById("bk").onclick=listView;
+    document.getElementById("cf").onsubmit=function(ev){ev.preventDefault();
+      state.code=document.getElementById("c").value; state.name=document.getElementById("n").value; state.group=document.getElementById("g").value;
+      api("/api/quiz/start",{id:id,code:state.code}).then(function(r){ if(r.error){document.getElementById("e").textContent=r.error;return;} questionsView(r); });
+    };
+  }
+  function questionsView(r){
+    var html='<h2>'+h(r.title)+'</h2><p class="lede">'+h(r.intro||"")+'</p><form id="qf">';
+    r.questions.forEach(function(q,k){
+      html+='<fieldset class="qq"><legend><span class="qn">'+(k+1)+'</span> '+h(q.q)+'</legend>';
+      if(q.open){html+='<textarea name="q'+q.i+'" rows="4" required></textarea>';}
+      else{q.o.forEach(function(o){html+='<label class="opt"><input type="radio" name="q'+q.i+'" value="'+o.v+'" required> <span>'+h(o.text)+'</span></label>';});}
+      html+='</fieldset>';
+    });
+    html+='<p class="err" id="e" role="alert"></p><button class="btn" type="submit">Send my answers</button></form>';
+    box.innerHTML=html; window.scrollTo(0,box.offsetTop-20);
+    document.getElementById("qf").onsubmit=function(ev){ev.preventDefault();
+      var answers={}; r.questions.forEach(function(q){var el=ev.target.elements["q"+q.i]; if(q.open){answers[q.i]=el.value;} else {var c=ev.target.querySelector('input[name="q'+q.i+'"]:checked'); answers[q.i]=c?Number(c.value):null;}});
+      api("/api/quiz/submit",{id:state.id,code:state.code,name:state.name,group:state.group,answers:answers}).then(function(s){
+        if(s.error){document.getElementById("e").textContent=s.error;return;}
+        var out='<h2>Thank you. Your answers are saved.</h2>';
+        if(s.graded){out+='<p class="lede">Your score: '+s.score+' out of '+s.outOf+'</p>'+s.review.map(function(x){return '<div class="note'+(x.right?' ok':'')+'"><p><strong>'+(x.right?'Right. ':'Not quite. ')+'</strong>'+h(x.q)+'</p><p>Answer: '+h(x.answer)+'. '+h(x.why)+'</p></div>';}).join("");}
+        out+='<p><button class="btn ghost" id="bk">Back to the quizzes</button></p>';
+        box.innerHTML=out; document.getElementById("bk").onclick=listView; window.scrollTo(0,box.offsetTop-20);
+      });
+    };
+  }
+  listView();
+})();
+</script>`;
+for (const x of classSessions) {
+  const nn = String(x.n).padStart(2, "0");
+  write(`/class/${x.slug}/quiz/`, page({
+    path: `/class/${x.slug}/quiz/`,
+    title: `Session ${x.n} quiz`,
+    area: "class",
+    body: `
+<p class="kicker">The class · Session ${x.n} of 32 · Quiz</p>
+<h1>Quiz</h1>
+<p class="lede">Choose the quiz your teacher opened, type the code from the screen, and answer every question.</p>
+<div id="quiz"><p>Loading…</p></div>
+<p style="margin-top:24px"><a href="/class/${x.slug}/">Back to Session ${x.n}</a></p>
+${quizScript(nn)}
+`,
+  }));
+}
+
+/* ---------- Teacher page (master password only; guarded in the worker) ---------- */
+write("/class/teacher/", page({
+  path: "/class/teacher/",
+  title: "Teacher",
+  area: "class",
+  body: `
+<p class="kicker">The class · Teacher</p>
+<h1>Quizzes</h1>
+<p class="lede">Open a quiz when the class is ready and close it when time is up. Set a new code for a session at any time. Codes are never shown again after you save them.</p>
+<div id="t"><p>Loading…</p></div>
+<h2>Set a session code</h2>
+<form class="gate" id="cf"><label for="s">Session number</label><input id="s" type="text" inputmode="numeric" required>
+<label for="c" style="margin-top:14px">New code</label><input id="c" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" required>
+<p class="err" id="ce" role="alert"></p><button class="btn" type="submit">Save code</button></form>
+<div id="res"></div>
+<script>
+(function(){
+  function h(t){var d=document.createElement("div");d.textContent=t==null?"":String(t);return d.innerHTML;}
+  function api(p,data){return fetch(p,{method:data?"POST":"GET",headers:{"Content-Type":"application/json"},credentials:"same-origin",body:data?JSON.stringify(data):undefined}).then(function(r){return r.json();});}
+  function load(){api("/api/teacher/state").then(function(r){
+    var t=document.getElementById("t");
+    if(r.error){t.innerHTML='<p class="note">Locked. Sign in with the master password.</p>';return;}
+    t.innerHTML='<div class="table-wrap"><table><thead><tr><th>Session</th><th>Quiz</th><th>Answers</th><th>Status</th><th></th></tr></thead><tbody>'+
+      r.quizzes.map(function(q){return '<tr><td>'+h(q.session)+(q.has_code?'':' (no code)')+'</td><td>'+h(q.title)+'</td><td><a href="#" data-r="'+h(q.id)+'">'+q.answers+'</a></td><td><strong>'+(q.open?'OPEN':'closed')+'</strong></td><td><button class="btn'+(q.open?' ghost':'')+'" data-o="'+h(q.id)+'" data-v="'+(q.open?0:1)+'">'+(q.open?'Close':'Open')+'</button></td></tr>';}).join("")+
+      '</tbody></table></div>';
+    [].forEach.call(t.querySelectorAll("[data-o]"),function(b){b.onclick=function(){api("/api/teacher/open",{id:b.dataset.o,open:b.dataset.v==="1"}).then(load);};});
+    [].forEach.call(t.querySelectorAll("[data-r]"),function(a){a.onclick=function(e){e.preventDefault();show(a.dataset.r);};});
+  });}
+  function show(id){api("/api/teacher/results?id="+encodeURIComponent(id)).then(function(r){
+    var el=document.getElementById("res");
+    el.innerHTML='<h2>'+h(r.title)+'</h2><p><a class="btn" href="/api/teacher/results?format=csv&id='+encodeURIComponent(id)+'">Download as a spreadsheet (CSV)</a> <button class="btn ghost" id="clr">Delete all answers</button></p>'+
+      '<div class="table-wrap"><table><thead><tr><th>Name</th><th>Group</th><th>Score</th><th>Submitted (UTC)</th></tr></thead><tbody>'+
+      r.rows.map(function(x){return '<tr><td>'+h(x.name)+'</td><td>'+h(x.grp)+'</td><td>'+(x.out_of?h(x.score)+' / '+h(x.out_of):'—')+'</td><td>'+h(x.created_at)+'</td></tr>';}).join("")+'</tbody></table></div>';
+    document.getElementById("clr").onclick=function(){ if(confirm("Delete every answer to this quiz? This cannot be undone.")) api("/api/teacher/clear",{id:id}).then(function(){show(id);load();}); };
+    el.scrollIntoView();
+  });}
+  document.getElementById("cf").onsubmit=function(e){e.preventDefault();
+    api("/api/teacher/code",{session:document.getElementById("s").value,code:document.getElementById("c").value}).then(function(r){
+      document.getElementById("ce").textContent=r.error||"Saved."; if(!r.error){document.getElementById("c").value="";load();}});};
+  load();
+})();
+</script>
+${lockLink("class")}
+`,
+}));
+
 /* ---------- Open notes ---------- */
 write("/open/", page({
   path: "/open/",
@@ -295,6 +408,7 @@ write("/about/", aboutPage());
 const pageNames = {};
 for (const sl of bookOrder) pageNames[`/book/${sl}/`] = `Book · ${bookLabel(sl)}`;
 for (const sl of classOrder) pageNames[`/class/${sl}/`] = `Class · ${classLabel(sl)}`;
+pageNames["/class/teacher/"] = "Teacher page";
 /* ---------- Login ---------- */
 write("/login/", page({
   path: "/login/",

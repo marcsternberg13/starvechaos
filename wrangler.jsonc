@@ -10,5 +10,9 @@
     // Only these paths run the password code; the rest is served straight from ./public.
     "run_worker_first": ["/book/*", "/class/*", "/api/*"]
   },
+  "d1_databases": [
+    // Quiz questions, hashed quiz codes and student answers (never in this repo).
+    { "binding": "DB", "database_name": "starvechaos-quiz", "database_id": "2a2cc048-bfb5-4a69-982f-6850de2a98d8" }
+  ],
   "observability": { "enabled": true }
 }

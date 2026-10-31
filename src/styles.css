@@ -225,3 +225,12 @@ footer .wrap { padding-top: 18px; padding-bottom: 28px; }
 .final-box li { margin-bottom: .6em; }
 .mat { list-style: none; padding: 0; }
 .mat li { padding: 10px 0; border-bottom: 1px solid var(--line); }
+
+/* Quiz pages */
+.qpick { display:block; width:100%; text-align:left; margin:0 0 10px; }
+fieldset.qq { border:1px solid var(--line); background:var(--card); border-radius:var(--radius); padding:14px; margin:0 0 14px; }
+fieldset.qq legend { font-weight:600; padding:0 4px; line-height:1.35; }
+.qn { color:var(--accent); font-weight:700; margin-right:4px; }
+label.opt { display:flex; gap:10px; align-items:flex-start; font-weight:400; padding:10px 4px; min-height:48px; border-top:1px solid var(--line); margin:0; }
+label.opt input { width:22px; height:22px; margin-top:2px; flex:none; }
+select, textarea { width:100%; font-size:1.1rem; padding:12px; border-radius:8px; border:1px solid var(--line); background:var(--paper); color:var(--ink); font-family:inherit; }
