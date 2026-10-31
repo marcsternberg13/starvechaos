@@ -118,10 +118,11 @@ const materials = {
       { what: "Opening: Starve Chaos", href: "/class/session-01/opening/", note: "Slides. What this course is about." },
       { what: "Warm-up quiz", href: "/class/session-01/quiz/?q=S01-baseline", note: "On your phone. Type the code from the screen. Not graded." },
       { what: "The lesson: the lemonade stand", href: "/class/session-01/slides/", note: "Slides." },
-      { what: "Group exercise: Your stand", href: "/class/session-01/exercise/", note: "Slides.", extra: { label: "Open the exercise sheet", href: "/class/session-01/handout/" } },
+      { what: "Group exercise: Your stand", href: "/class/session-01/exercise/", note: "Slides. Then a chaos card for each group.", extra: { label: "Open the exercise sheet", href: "/class/session-01/handout/" } },
       { what: "Session 1 quiz", href: "/class/session-01/quiz/?q=S01-quiz", note: "On your phone. Ten graded questions on today." },
       { what: "Exit question", href: "/class/session-01/quiz/?q=S01-exit", note: "On your phone, before you leave." },
     ],
+    timing: "Two hours: opening (15 minutes) · warm-up quiz and one word (10) · the story (20) · group exercise (25) · break (5) · groups present (20) · chaos card (10) · quiz on your phone (8) · exit question on your phone (7).",
     handoutPdf: "/class/session-01/handout.pdf",
     homework: [
       "Read Part 1 of the book.",
@@ -138,10 +139,11 @@ const materials = {
     steps: [
       { what: "Warm-up quiz", href: "/class/session-02/quiz/?q=S02-warmup", note: "On your phone. Type the code from the screen. Not graded." },
       { what: "The lesson: chaos", href: "/class/session-02/slides/", note: "Slides. The story in three parts, two definitions, and where chaos comes from.", extra: { label: "Open the course glossary", href: "/class/session-02/handout/", pdf: "/class/session-02/handout.pdf" } },
-      { what: "Class exercise and group work: Failure or chaos?", href: "/class/session-02/exercise/", note: "Slides. Sort eight cases, then form your team.", extra: { label: "Open the exercise sheet", href: "/class/session-02/sheet/", pdf: "/class/session-02/sheet.pdf" } },
+      { what: "Class exercise and group work: Failure or chaos?", href: "/class/session-02/exercise/", note: "Slides. Sort eight cases, then form your team. Then a chaos card.", extra: { label: "Open the exercise sheet", href: "/class/session-02/sheet/", pdf: "/class/session-02/sheet.pdf" } },
       { what: "Session 2 quiz", href: "/class/session-02/quiz/?q=S02-quiz", note: "On your phone. Ten graded questions on today." },
       { what: "Exit question", href: "/class/session-02/quiz/?q=S02-exit", note: "On your phone, before you leave." },
     ],
+    timing: "Two hours: warm-up quiz and one word (15 minutes) · the story and the ideas (20) · class exercise (30) · break (5) · group work (25) · chaos card (10) · quiz on your phone (8) · exit question on your phone (7).",
     read: { what: "Read Section 01", href: "/book/01/", note: "General Outlook: the primer and the first twelve rules. It has its own password." },
     homework: [
       "Read Section 01 of the book: the primer and the first twelve rules.",
@@ -159,10 +161,11 @@ const materials = {
     steps: [
       { what: "Warm-up quiz", href: "/class/session-03/quiz/?q=S03-warmup", note: "On your phone. Type the code from the screen. Not graded." },
       { what: "The lesson: white towels", href: "/class/session-03/slides/", note: "Slides. A boring industry on purpose, choosing who to serve, and two rules." },
-      { what: "Class exercise and group work: The tailor's wall", href: "/class/session-03/exercise/", note: "Slides. Choose a customer for a tailoring shop, write its wall, then your team's customer.", extra: { label: "Open the exercise sheet", href: "/class/session-03/sheet/", pdf: "/class/session-03/sheet.pdf" } },
+      { what: "Class exercise and group work: The tailor's wall", href: "/class/session-03/exercise/", note: "Slides. Choose a customer for a tailoring shop, write its wall, then your team's customer. Then a chaos card.", extra: { label: "Open the exercise sheet", href: "/class/session-03/sheet/", pdf: "/class/session-03/sheet.pdf" } },
       { what: "Session 3 quiz", href: "/class/session-03/quiz/?q=S03-quiz", note: "On your phone. Ten graded questions on today." },
       { what: "Exit question", href: "/class/session-03/quiz/?q=S03-exit", note: "On your phone, before you leave." },
     ],
+    timing: "Two hours: warm-up quiz and one word (15 minutes) · the story and the ideas (20) · class exercise (30) · break (5) · group work (25) · chaos card (10) · quiz on your phone (8) · exit question on your phone (7).",
     read: { what: "Read Section 01 again", href: "/book/01/", note: "Rules 3, 4, 5, 7, 8, 9 and 10. It has its own password." },
     homework: [
       "Read Rules 3, 4, 5, 7, 8, 9 and 10 in Section 01 again. Mark the one you most disagree with and bring it to Session 4.",
@@ -181,10 +184,11 @@ const materials = {
     steps: [
       { what: "Warm-up quiz", href: "/class/session-04/quiz/?q=S04-warmup", note: "On your phone. Type the code from the screen. Not graded." },
       { what: "The lesson: different, not better", href: "/class/session-04/slides/", note: "Slides. The second half of the laundry story, three rules and one phrase to watch." },
-      { what: "Class exercise and group work: Two bakeries, one street", href: "/class/session-04/exercise/", note: "Slides. Better or different, the copy test and two kinds of door. Then box 3 of your Problem Map.", extra: { label: "Open the exercise sheet", href: "/class/session-04/sheet/", pdf: "/class/session-04/sheet.pdf" } },
+      { what: "Class exercise and group work: Two bakeries, one street", href: "/class/session-04/exercise/", note: "Slides. Better or different, the copy test and two kinds of door. Then box 3 of your Problem Map. A guest slot (or backup cases) before the break, and a chaos card at the end.", extra: { label: "Open the exercise sheet", href: "/class/session-04/sheet/", pdf: "/class/session-04/sheet.pdf" } },
       { what: "Session 4 quiz", href: "/class/session-04/quiz/?q=S04-quiz", note: "On your phone. Ten graded questions on today." },
       { what: "Exit question", href: "/class/session-04/quiz/?q=S04-exit", note: "On your phone, before you leave." },
     ],
+    timing: "Two hours: warm-up quiz and one word (15 minutes) · the story and the ideas (20) · class exercise (25) · guest slot (10) · break (5) · group work (20) · chaos card (10) · quiz on your phone (8) · exit question on your phone (7).",
     read: false,
     homework: [
       "Ask two people who have your team's problem what they do about it today. Write down their answers.",
@@ -202,10 +206,11 @@ const materials = {
     steps: [
       { what: "Warm-up quiz", href: "/class/session-05/quiz/?q=S05-warmup", note: "On your phone. Type the code from the screen. Not graded." },
       { what: "The lesson: getting on early", href: "/class/session-05/slides/", note: "Slides. The first half of the Amazon story and three rules about where opportunities hide." },
-      { what: "Class exercise and group work: Break one rule", href: "/class/session-05/exercise/", note: "Slides. List the rules of taxis and transport, break one, describe the new business. Then box 3 of your Problem Map, second draft.", extra: { label: "Open the exercise sheet", href: "/class/session-05/sheet/", pdf: "/class/session-05/sheet.pdf" } },
+      { what: "Class exercise and group work: Break one rule", href: "/class/session-05/exercise/", note: "Slides. List the rules of taxis and transport, break one, describe the new business. Then box 3 of your Problem Map, second draft. Then a chaos card.", extra: { label: "Open the exercise sheet", href: "/class/session-05/sheet/", pdf: "/class/session-05/sheet.pdf" } },
       { what: "Session 5 quiz", href: "/class/session-05/quiz/?q=S05-quiz", note: "On your phone. Ten graded questions on today." },
       { what: "Exit question", href: "/class/session-05/quiz/?q=S05-exit", note: "On your phone, before you leave." },
     ],
+    timing: "Two hours: warm-up quiz and one word (15 minutes) · the story and the ideas (20) · class exercise (30) · break (5) · group work (25) · chaos card (10) · quiz on your phone (8) · exit question on your phone (7).",
     read: { what: "Read Section 02", href: "/book/02/", note: "Rules 16, 18 and 21. It has its own password." },
     homework: [
       "Read Rules 16, 18 and 21 in Section 02. For each one, write one business in your city it reminds you of.",
@@ -247,10 +252,11 @@ const materials = {
     steps: [
       { what: "Warm-up quiz", href: "/class/session-07/quiz/?q=S07-warmup", note: "On your phone. Type the code from the screen. Not graded." },
       { what: "The lesson: cheap tools first", href: "/class/session-07/slides/", note: "Slides. The first half of the landscaping story and four rules about using what you already have." },
-      { what: "Class exercise and group work: The family asset inventory", href: "/class/session-07/exercise/", note: "Slides. A family with a car, a big kitchen and a cousin’s stall, and no new money: list every resource, combine them, pick a business. Then your team asset list.", extra: { label: "Open the exercise sheet", href: "/class/session-07/sheet/", pdf: "/class/session-07/sheet.pdf" } },
+      { what: "Class exercise and group work: The family asset inventory", href: "/class/session-07/exercise/", note: "Slides. A family with a car, a big kitchen and a cousin’s stall, and no new money: list every resource, combine them, pick a business. Then your team asset list. Then a chaos card.", extra: { label: "Open the exercise sheet", href: "/class/session-07/sheet/", pdf: "/class/session-07/sheet.pdf" } },
       { what: "Session 7 quiz", href: "/class/session-07/quiz/?q=S07-quiz", note: "On your phone. Ten graded questions on today." },
       { what: "Exit question", href: "/class/session-07/quiz/?q=S07-exit", note: "On your phone, before you leave." },
     ],
+    timing: "Two hours: warm-up quiz and one word (15 minutes) · the story and the ideas (20) · class exercise (30) · break (5) · group work (25) · chaos card (10) · quiz on your phone (8) · exit question on your phone (7).",
     read: { what: "Read Section 03", href: "/book/03/", note: "Rules 23, 26, 27, 28 and 29. It has its own password." },
     homework: [
       "Read Rules 23, 26, 27, 28 and 29 in Section 03. For each one, write one way your team could use it.",
@@ -269,10 +275,11 @@ const materials = {
     steps: [
       { what: "Warm-up quiz", href: "/class/session-08/quiz/?q=S08-warmup", note: "On your phone. Type the code from the screen. Not graded." },
       { what: "The lesson: the season the others skipped", href: "/class/session-08/slides/", note: "Slides. The second half of the landscaping story, three rules and one phrase to watch." },
-      { what: "Class exercise and group work: The budget game", href: "/class/session-08/exercise/", note: "Slides. A phone repair stall with 3,000 units of money: spend big on one thing, cut the rest, test each cut. Then box 5 of your Problem Map and a test by hand.", extra: { label: "Open the exercise sheet", href: "/class/session-08/sheet/", pdf: "/class/session-08/sheet.pdf" } },
+      { what: "Class exercise and group work: The budget game", href: "/class/session-08/exercise/", note: "Slides. A phone repair stall with 3,000 units of money: spend big on one thing, cut the rest, test each cut. Then box 5 of your Problem Map and a test by hand. A guest slot (or backup cases) before the break, and a chaos card at the end.", extra: { label: "Open the exercise sheet", href: "/class/session-08/sheet/", pdf: "/class/session-08/sheet.pdf" } },
       { what: "Session 8 quiz", href: "/class/session-08/quiz/?q=S08-quiz", note: "On your phone. Ten graded questions on today." },
       { what: "Exit question", href: "/class/session-08/quiz/?q=S08-exit", note: "On your phone, before you leave." },
     ],
+    timing: "Two hours: warm-up quiz and one word (15 minutes) · the story and the ideas (20) · class exercise (25) · guest slot (10) · break (5) · group work (20) · chaos card (10) · quiz on your phone (8) · exit question on your phone (7).",
     read: false,
     homework: [
       "Run your team's cheapest test this week, by hand, outside class. Spend no more than your test allows.",

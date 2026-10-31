@@ -354,6 +354,11 @@ write("/class/teacher/", page({
 <form class="gate" id="cf"><label for="s">Session number</label><input id="s" type="text" inputmode="numeric" required>
 <label for="c" style="margin-top:14px">New code</label><input id="c" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" required>
 <p class="err" id="ce" role="alert"></p><button class="btn" type="submit">Save code</button></form>
+<h2>Top 5 on the class screen</h2>
+<p>Show the five best scores to the class. Choose the group, then today's graded quiz or the course total (the best score on each graded quiz, added up). The board updates every 15 seconds.</p>
+<form class="gate" id="tf"><label for="tg">Group</label><select id="tg"><option>Group 1</option><option>Group 2</option><option>Group 3</option><option value="">All groups</option></select>
+<label for="tq" style="margin-top:14px">Scores</label><select id="tq"><option value="">Course total</option></select>
+<p style="margin-top:14px"><button class="btn" type="submit">Show the top 5</button></p></form>
 <div id="res"></div>
 <script>
 (function(){
@@ -367,7 +372,12 @@ write("/class/teacher/", page({
       '</tbody></table></div>';
     [].forEach.call(t.querySelectorAll("[data-o]"),function(b){b.onclick=function(){api("/api/teacher/open",{id:b.dataset.o,open:b.dataset.v==="1"}).then(load);};});
     [].forEach.call(t.querySelectorAll("[data-r]"),function(a){a.onclick=function(e){e.preventDefault();show(a.dataset.r);};});
+    var tq=document.getElementById("tq"), keep=tq.value;
+    tq.innerHTML='<option value="">Course total</option>'+r.quizzes.filter(function(q){return q.kind==="quiz";}).map(function(q){return '<option value="'+h(q.id)+'">'+h(q.title)+'</option>';}).join("");
+    tq.value=keep;
   });}
+  document.getElementById("tf").onsubmit=function(e){e.preventDefault();
+    location.href="/class/teacher/top/?group="+encodeURIComponent(document.getElementById("tg").value)+"&quiz="+encodeURIComponent(document.getElementById("tq").value);};
   function show(id){api("/api/teacher/results?id="+encodeURIComponent(id)).then(function(r){
     var el=document.getElementById("res");
     el.innerHTML='<h2>'+h(r.title)+'</h2><p><a class="btn" href="/api/teacher/results?format=csv&id='+encodeURIComponent(id)+'">Download as a spreadsheet (CSV)</a> <button class="btn ghost" id="clr">Delete all answers</button></p>'+

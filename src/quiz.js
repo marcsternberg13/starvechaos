@@ -151,6 +151,37 @@ async function results(env, url) {
   return json({ title: q.title, questions, rows: rows.map((r) => ({ ...r, answers: JSON.parse(r.answers) })) });
 }
 
+/* Top five scores for the class screen. One quiz, or the course total of best scores. */
+async function top(env, url) {
+  const group = String(url.searchParams.get("group") || "").slice(0, 40);
+  const quiz = url.searchParams.get("quiz") || "";
+  const { results: rows } = await env.DB.prepare(
+    `SELECT r.quiz_id, r.name, r.score, r.out_of, r.created_at FROM responses r
+     JOIN quizzes q ON q.id = r.quiz_id
+     WHERE q.graded = 1 AND r.out_of IS NOT NULL AND (? = '' OR r.grp = ?) AND (? = '' OR r.quiz_id = ?)
+     ORDER BY r.created_at`
+  ).bind(group, group, quiz, quiz).all();
+  const best = new Map();
+  for (const r of rows) {
+    const who = String(r.name).trim().replace(/\s+/g, " ");
+    const key = who.toLowerCase() + "|" + r.quiz_id;
+    const was = best.get(key);
+    if (!was || r.score > was.score) best.set(key, { who, quiz: r.quiz_id, score: r.score, outOf: r.out_of, at: r.created_at });
+  }
+  const people = new Map();
+  for (const b of best.values()) {
+    const k = b.who.toLowerCase();
+    const p = people.get(k) || { name: b.who, score: 0, outOf: 0, quizzes: 0, at: "" };
+    p.name = b.who; p.score += b.score; p.outOf += b.outOf; p.quizzes += 1;
+    if (b.at > p.at) p.at = b.at;
+    people.set(k, p);
+  }
+  const list = [...people.values()].sort((a, b) => b.score - a.score || a.at.localeCompare(b.at)).slice(0, 5);
+  let title = "Course total";
+  if (quiz) { const q = await getQuiz(env, quiz); title = q ? q.title : quiz; }
+  return json({ title, group, top: list.map(({ name, score, outOf, quizzes }) => ({ name, score, outOf, quizzes })) });
+}
+
 async function clear(request, env) {
   const { id } = await body(request);
   await env.DB.prepare("DELETE FROM responses WHERE quiz_id = ?").bind(id).run();
@@ -171,6 +202,7 @@ export async function quizApi(request, env, url) {
     if (p === "/api/teacher/code" && post) return setCode(request, env);
     if (p === "/api/teacher/results") return results(env, url);
     if (p === "/api/teacher/clear" && post) return clear(request, env);
+    if (p === "/api/teacher/top") return top(env, url);
   }
   return json({ error: "not found" }, 404);
 }
