@@ -102,7 +102,7 @@ const phrases = {
   24: [3, "Every great company starts with a genius in a garage"], 28: [7, "The first mover wins"],
 };
 const special = {
-  1: ["The lemonade stand", "Hear the lemonade stand story, unpack it together, and plan a stand of your own: the 19 parts of a business."],
+  1: ["The lemonade stand", "Learn what this course is about, hear the lemonade stand story, and plan a stand of your own in groups: the 19 parts of a business."],
   2: ["Teams and key words", "Form your team of four or five, learn the course's key words, and choose the one real problem you will work on all semester."],
   17: ["Midpoint pitches", "Give your three-minute spoken pitch, no slides, then take four minutes of feedback. Scored out of 20."],
   18: ["Revise the idea", "Use the feedback from your pitch to revise your idea before the second half of the course."],
@@ -114,8 +114,14 @@ const special = {
 // Finished materials per session. A session without an entry shows a short "posted when the session opens" note.
 const materials = {
   1: {
-    slides: "/class/session-01/slides/",
-    handout: "/class/session-01/handout/",
+    steps: [
+      { what: "Opening: Starve Chaos", href: "/class/session-01/opening/", note: "Slides. What this course is about." },
+      { what: "Warm-up quiz", href: "/class/session-01/quiz/?q=S01-baseline", note: "On your phone. Type the code from the screen. Not graded." },
+      { what: "The lesson: the lemonade stand", href: "/class/session-01/slides/", note: "Slides." },
+      { what: "Group exercise: Your stand", href: "/class/session-01/exercise/", note: "Slides.", extra: { label: "Open the exercise sheet", href: "/class/session-01/handout/" } },
+      { what: "Exit question", href: "/class/session-01/quiz/?q=S01-exit", note: "On your phone, before you leave." },
+    ],
+    later: { what: "Session 1 quiz", href: "/class/session-01/quiz/?q=S01-quiz", note: "Ten graded questions on today. You take it at the start of Session 2." },
     handoutPdf: "/class/session-01/handout.pdf",
     homework: [
       "Read Part 1 of the book.",

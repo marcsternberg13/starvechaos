@@ -178,6 +178,7 @@ ${b.gate === "open" ? "" : lockLink("book")}
 }
 
 // ----- Class index and pages (one page per week of the 16-week course, each with its own password)
+const readLinkHref = (slug) => `/book/${slug}/`;
 const readLink = (slug) => {
   const sec = sections.find((x) => x.slug === slug);
   const title = sec ? `Section ${slug}: ${sec.title}` : `${bookParts[slug].label}: ${bookParts[slug].title}`;
@@ -208,13 +209,14 @@ ${weekBlock(15, 16)}
 const materialsBlock = (x) => {
   const m = x.materials;
   if (!m) return `<h2>Materials</h2>\n<p>Materials are posted when the session opens.</p>`;
-  return `<h2>Materials</h2>
-<ul class="mat">
-<li><strong>Reading:</strong> ${readLink(x.week.read)}</li>
-<li><strong>Slides:</strong> <a href="${m.slides}">Open the slides</a></li>
-<li><strong>Handout:</strong> <a href="${m.handout}">Open the handout</a> · <a href="${m.handoutPdf}" download>download the PDF</a></li>
-<li><strong>Quiz and exit question:</strong> <a href="/class/${x.slug}/quiz/">Open the quiz page</a> on your phone in class, then type the code from the screen.</li>
-</ul>
+  const step = (st, i) => `<li><a class="step" href="${st.href}"><span class="sn">${i + 1}</span><span class="st"><strong>${esc(st.what)}</strong><span>${esc(st.note)}</span></span></a>${st.extra ? `<p class="subs"><a href="${st.extra.href}">${esc(st.extra.label)}</a> · <a href="${m.handoutPdf}" download>download the PDF</a></p>` : ""}</li>`;
+  return `<h2>In class, step by step</h2>
+<ol class="steps">${m.steps.map(step).join("")}</ol>
+<h2>After class</h2>
+<ol class="steps after">
+<li><a class="step" href="${readLinkHref(x.week.read)}"><span class="sn">R</span><span class="st"><strong>Read Part 1</strong><span>The book reading for this week. It has its own password.</span></span></a></li>
+<li><a class="step" href="${m.later.href}"><span class="sn">Q</span><span class="st"><strong>${esc(m.later.what)}</strong><span>${esc(m.later.note)}</span></span></a></li>
+</ol>
 <h3>Homework</h3>
 <ol>${m.homework.map((h) => `<li>${esc(h)}</li>`).join("")}</ol>
 <div class="final-box">
@@ -306,7 +308,15 @@ const quizScript = (session) => `<script>
       });
     };
   }
-  listView();
+  var want = new URLSearchParams(location.search).get("q");
+  if (want) {
+    api("/api/quiz/list?session="+S).then(function(r){
+      var q=(r.quizzes||[]).filter(function(x){return x.id===want;})[0];
+      if(q && q.open){codeView(q.id,q.title);}
+      else if(q){box.innerHTML='<p class="note">'+h(q.title)+' is not open yet. Your teacher opens it in class.</p><p><button class="btn ghost" id="bk">See all quizzes</button></p>';document.getElementById("bk").onclick=listView;}
+      else{listView();}
+    }).catch(listView);
+  } else { listView(); }
 })();
 </script>`;
 for (const x of classSessions) {
