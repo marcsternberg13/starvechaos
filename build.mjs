@@ -228,8 +228,6 @@ ${x.log ? `<tr><th scope="row">Chaos log</th><td>Add one entry before you leave.
 </table></div>
 <h2>The session</h2>
 <p>Warm-up quiz and one word (10 minutes) · the story and the ideas (15) · class exercise (30) · group work (25) · discussion and exit question on your phone (10).</p>
-<h2>Materials</h2>
-<div class="placeholder">Slides, handouts, the quiz and the exit question for Session ${x.n} are posted here when the session opens.</div>
 <p class="small">The reading page has its own password, given in class.</p>
 </article>
 ${pager("class", classOrder, classLabel, x.slug)}
