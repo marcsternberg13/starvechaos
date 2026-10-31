@@ -119,9 +119,9 @@ const materials = {
       { what: "Warm-up quiz", href: "/class/session-01/quiz/?q=S01-baseline", note: "On your phone. Type the code from the screen. Not graded." },
       { what: "The lesson: the lemonade stand", href: "/class/session-01/slides/", note: "Slides." },
       { what: "Group exercise: Your stand", href: "/class/session-01/exercise/", note: "Slides.", extra: { label: "Open the exercise sheet", href: "/class/session-01/handout/" } },
+      { what: "Session 1 quiz", href: "/class/session-01/quiz/?q=S01-quiz", note: "On your phone. Ten graded questions on today." },
       { what: "Exit question", href: "/class/session-01/quiz/?q=S01-exit", note: "On your phone, before you leave." },
     ],
-    later: { what: "Session 1 quiz", href: "/class/session-01/quiz/?q=S01-quiz", note: "Ten graded questions on today. You take it at the start of Session 2." },
     handoutPdf: "/class/session-01/handout.pdf",
     homework: [
       "Read Part 1 of the book.",

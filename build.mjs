@@ -219,7 +219,7 @@ const materialsBlock = (x) => {
 <h2>After class</h2>
 <ol class="steps after">
 <li><a class="step" href="${readLinkHref(x.week.read)}"><span class="sn">R</span><span class="st"><strong>Read Part 1</strong><span>The book reading for this week. It has its own password.</span></span></a></li>
-<li><a class="step" href="${m.later.href}"><span class="sn">Q</span><span class="st"><strong>${esc(m.later.what)}</strong><span>${esc(m.later.note)}</span></span></a></li>
+${m.later ? `<li><a class="step" href="${m.later.href}"><span class="sn">Q</span><span class="st"><strong>${esc(m.later.what)}</strong><span>${esc(m.later.note)}</span></span></a></li>` : ""}
 </ol>
 <h3>Homework</h3>
 <ol>${m.homework.map((h) => `<li>${esc(h)}</li>`).join("")}</ol>
