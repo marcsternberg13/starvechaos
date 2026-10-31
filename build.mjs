@@ -255,7 +255,7 @@ ${x.log ? `<tr><th scope="row">Chaos log</th><td>Add one entry before you leave.
 </table></div>
 ${materialsBlock(x)}
 <h2>The session</h2>
-<p>${x.n === 1 ? "Two hours: opening (15 minutes) · warm-up quiz and one word (10) · the story (20) · group exercise (30) · break (5) · groups present (25) · quiz on your phone (8) · exit question on your phone (7)." : "Two hours: warm-up quiz and one word (15 minutes) · the story and the ideas (20) · class exercise (35) · break (5) · group work (30) · quiz on your phone (8) · exit question on your phone (7)."}</p>
+<p>${x.materials && x.materials.timing ? esc(x.materials.timing) : x.n === 1 ? "Two hours: opening (15 minutes) · warm-up quiz and one word (10) · the story (20) · group exercise (30) · break (5) · groups present (25) · quiz on your phone (8) · exit question on your phone (7)." : "Two hours: warm-up quiz and one word (15 minutes) · the story and the ideas (20) · class exercise (35) · break (5) · group work (30) · quiz on your phone (8) · exit question on your phone (7)."}</p>
 <p class="small">The reading page has its own password, given in class.</p>
 </article>
 ${pager("class", classOrder, classLabel, x.slug)}

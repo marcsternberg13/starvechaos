@@ -220,6 +220,29 @@ const materials = {
     ],
     source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Section 02 and Part 5). Son of a Botanist Productions. https://starvechaos.com · von Hippel, E. (1986). Lead users: A source of novel product concepts. <em>Management Science, 32</em>(7), 791–805. https://doi.org/10.1287/mnsc.32.7.791 · Haas, M. R. (2010). The double-edged swords of autonomy and external knowledge: Analyzing team effectiveness in a multinational organization. <em>Academy of Management Journal, 53</em>(5), 989–1008. https://doi.org/10.5465/amj.2010.54533180",
   },
+  6: {
+    steps: [
+      { what: "Warm-up quiz", href: "/class/session-06/quiz/?q=S06-warmup", note: "On your phone. Type the code from the screen. Not graded." },
+      { what: "The lesson: getting on early, part two", href: "/class/session-06/slides/", note: "Slides. The second half of the Amazon story and three rules for finding a gap." },
+      { what: "Class exercise, guest slot and group work: The empty space", href: "/class/session-06/exercise/", note: "Slides. Map three ways to study for an exam and find what all of them miss. Then box 2 of your Problem Map, and a chaos card.", extra: { label: "Open the exercise sheet", href: "/class/session-06/sheet/", pdf: "/class/session-06/sheet.pdf" } },
+      { what: "Session 6 quiz", href: "/class/session-06/quiz/?q=S06-quiz", note: "On your phone. Ten graded questions on today." },
+      { what: "Exit question", href: "/class/session-06/quiz/?q=S06-exit", note: "On your phone, before you leave." },
+    ],
+    read: false,
+    timing: "Two hours: warm-up quiz and one word (15 minutes) · the story and the ideas (20) · class exercise (25) · guest slot (10) · break (5) · group work (20) · chaos card (10) · quiz on your phone (8) · exit question on your phone (7).",
+    homework: [
+      "Ask two people who have your team's problem: what does every option they tried miss? Write down their words.",
+      "List three things you have that you have never used for a business: a skill, a tool, a space or a person you know. Bring the list to Session 7.",
+      "Map keepers: keep box 2 and the gap sentence for Session 7.",
+      "Chaos-log keepers: keep today's chaos-card entry in the log.",
+    ],
+    final: [
+      "What gap will your idea fill? Write it as one sentence: every option …, but none ….",
+      "Who exactly is standing in the gap, and what do they already pay for today?",
+      "What hurts, how often and how much? Where is the bottleneck?",
+    ],
+    source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Section 02 and Part 5). Son of a Botanist Productions. https://starvechaos.com",
+  },
 };
 const sessionWords = ["Entrepreneurship","Chaos","Owner","Strategy","Opportunity","Gap","Resources","Bootstrapping","Bet","Scenario","Question","Evidence","Failure","Pivot","Focus","Priority","Feedback","Hypothesis","Sale","Channel","Margin","Runway","Team","Conflict","Bottleneck","System","Product","Prototype","Plan","Rehearsal","Pitch","Starve"];
 export const classSessions = [];
