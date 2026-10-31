@@ -4,6 +4,10 @@ import { mkdirSync, writeFileSync, rmSync, readFileSync, cpSync, existsSync } fr
 import { loadRules, linkRuleRefs } from "./src/rulerefs.mjs";
 import { dirname, join } from "node:path";
 import { site, sections, parts, weekOf, bookParts, weeks, classSessions } from "./src/config.mjs";
+import { createHash } from "node:crypto";
+import { readFileSync as readCss } from "node:fs";
+// Version stamp on the stylesheet link, so phones load a changed stylesheet at once.
+const CSS_V = createHash("sha256").update(readCss("src/styles.css")).digest("hex").slice(0, 10);
 import { homePage, aboutPage } from "./src/home.mjs";
 
 const OUT = "public";
@@ -37,7 +41,7 @@ function page({ path, title, description = site.tagline, body, area }) {
 <meta name="description" content="${esc(description)}">
 <meta name="theme-color" content="#16130F">
 ${area ? '<meta name="robots" content="noindex">' : ""}
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/styles.css?v=${CSS_V}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 </head>
 <body>

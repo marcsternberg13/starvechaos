@@ -1,3 +1,6 @@
+import { createHash as _ch } from "node:crypto";
+import { readFileSync as _rf } from "node:fs";
+const HOME_V = _ch("sha256").update(_rf("src/home.css")).digest("hex").slice(0, 10);
 // Public, full-bleed pages: the homepage and About.
 // Everything here is open to the world, so it stays high level:
 // no teaching location (not even the country), no host institution, no phone number,
@@ -35,7 +38,7 @@ function shell({ path, title, description, preload = "", body }) {
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/oswald-latin-700-normal.woff2" crossorigin>
 ${preload}
-<link rel="stylesheet" href="/home.css">
+<link rel="stylesheet" href="/home.css?v=${HOME_V}">
 </head>
 <body class="home">
 <a class="skip" href="#main">Skip to content</a>
