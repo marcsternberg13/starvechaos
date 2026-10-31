@@ -63,6 +63,6 @@ ADMIN_CODE=admin
 
 ## Passwords (updated October 30, 2026)
 
-- Every locked page has its own password: book pages `/book/part-1/`, `/book/01/`–`/book/12/`, `/book/part-3/`, `/book/part-4/`, and one class page per course week, `/class/week-01/`–`/class/week-16/`. `/book/part-5/` opens only with the master password.
+- Every locked page has its own password: book pages `/book/part-1/`, `/book/01/`–`/book/12/`, `/book/part-3/`, `/book/part-4/`, and one class page per class session, `/class/session-01/`–`/class/session-32/` (two sessions a week). `/book/part-5/` opens only with the master password.
 - The repo holds only salted SHA-256 hashes (`lib/codes.js`), never the passwords. The passwords live in Marc's private "starvechaos.com Password Cheat Sheet" doc.
 - Cloudflare only needs `AUTH_SECRET`. The old `ACCESS_CODES` and `ADMIN_CODE` secrets are no longer used and can be deleted.

@@ -93,3 +93,41 @@ for (const w of weeks) {
       : "Use this week's rules to build the business behind your idea. Add the piece to your plan and one entry to your chaos log.";
   }
 }
+
+// The 32 class sessions (two a week). Each session is one class page, /class/session-NN/, with its own password.
+const phrases = {
+  4: [10, "Pick a hot industry"], 8: [8, "You need money to start"], 10: [6, "Entrepreneurs love risk"],
+  12: [9, "You need industry experience to start"], 14: [4, "Celebrate failure"], 16: [1, "The customer is always right"],
+  20: [2, "A great product sells itself"], 22: [5, "Growth means profit"],
+  24: [3, "Every great company starts with a genius in a garage"], 28: [7, "The first mover wins"],
+};
+const special = {
+  1: ["The lemonade stand", "Hear the lemonade stand story, unpack it together, and fill in the component table for a local idea."],
+  2: ["Teams and key words", "Form your team of four or five, learn the course's key words, and choose the one real problem you will work on all semester."],
+  17: ["Midpoint pitches", "Give your three-minute spoken pitch, no slides, then take four minutes of feedback. Scored out of 20."],
+  18: ["Revise the idea", "Use the feedback from your pitch to revise your idea before the second half of the course."],
+  29: ["Build the plan and the deck", "Build your plan and your 12-slide deck. Every row of the Week 1 component table must be answered."],
+  30: ["Rehearse", "Rehearse your presentation and get feedback from the class and the instructor."],
+  31: ["Final presentations, day one", "Teams present their idea and plan: 12 slides, eight minutes plus four minutes of questions. Scored out of 100."],
+  32: ["Final presentations, day two", "The remaining teams present. Then we close the course: starve chaos."],
+};
+const sessionWords = ["Entrepreneurship","Chaos","Owner","Strategy","Opportunity","Gap","Resources","Bootstrapping","Bet","Scenario","Question","Evidence","Failure","Pivot","Focus","Priority","Feedback","Hypothesis","Sale","Channel","Margin","Runway","Team","Conflict","Bottleneck","System","Product","Prototype","Plan","Rehearsal","Pitch","Starve"];
+export const classSessions = [];
+for (const w of weeks) {
+  for (const half of ["A", "B"]) {
+    const n = 2 * w.n - (half === "A" ? 1 : 0);
+    const sp = special[n];
+    const session = {
+      n, half, week: w, slug: `session-${String(n).padStart(2, "0")}`,
+      word: sessionWords[n - 1],
+      title: sp ? sp[0] : `${w.title}${half === "A" ? ", part one" : ", part two"}`,
+      plan: sp ? sp[1] : half === "A"
+        ? `The first half of the story, "${w.story}", and the section's main rules. Then use them on your team's problem.`
+        : `The second half of the story, "${w.story}", and the remaining rules. Then more time on your team's project.`,
+      phrase: phrases[n] || null,
+      card: [6, 10, 14, 20, 22, 26, 28].includes(n),
+      log: half === "B" && n <= 28,
+    };
+    classSessions.push(session);
+  }
+}

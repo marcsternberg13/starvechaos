@@ -2,7 +2,7 @@
 // Cloudflare Pages runs this on every push (build command: node build.mjs).
 import { mkdirSync, writeFileSync, rmSync, readFileSync, cpSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { site, sections, parts, weekOf, bookParts, weeks } from "./src/config.mjs";
+import { site, sections, parts, weekOf, bookParts, weeks, classSessions } from "./src/config.mjs";
 import { homePage, aboutPage } from "./src/home.mjs";
 
 const OUT = "public";
@@ -105,8 +105,8 @@ const sectionCards = (area, p) =>
 // Reading order of the book, used for prev/next links.
 const bookOrder = ["part-1", ...sections.map((s) => s.slug), "part-3", "part-4", "part-5", "back"];
 const bookLabel = (slug) => bookParts[slug] ? `${bookParts[slug].label}: ${bookParts[slug].title}` : `Section ${slug}: ${sections.find((s) => s.slug === slug).title}`;
-const classOrder = weeks.map((w) => w.slug);
-const classLabel = (slug) => { const w = weeks.find((x) => x.slug === slug); return `Week ${w.n}: ${w.title}`; };
+const classOrder = classSessions.map((x) => x.slug);
+const classLabel = (slug) => { const x = classSessions.find((y) => y.slug === slug); return `Session ${x.n}: ${x.title}`; };
 
 function pager(area, order, label, slug) {
   const i = order.indexOf(slug);
@@ -181,56 +181,58 @@ const readLink = (slug) => {
   const title = sec ? `Section ${slug}: ${sec.title}` : `${bookParts[slug].label}: ${bookParts[slug].title}`;
   return `<a href="/book/${slug}/">${esc(title)}</a>`;
 };
-const weekCard = (w) => card(`/class/${w.slug}/`, `W${w.n}`, `Week ${w.n}: ${w.title}`, w.sessions);
-const weekCards = (from, to) => weeks.filter((w) => w.n >= from && w.n <= to).map(weekCard).join("");
+const sessCard = (x) => card(`/class/${x.slug}/`, String(x.n), `Session ${x.n}: ${x.title}`, `Week ${x.week.n} · Session ${x.half} · Word: ${x.word}`);
+const weekBlock = (from, to) => weeks.filter((w) => w.n >= from && w.n <= to).map((w) =>
+  `<p class="group">Week ${w.n} · ${esc(w.title)}</p><ul class="cards">${classSessions.filter((x) => x.week.n === w.n).map(sessCard).join("")}</ul>`).join("");
 write("/class/", page({
   path: "/class/",
   title: "The class",
   body: `
 <p class="kicker">The class</p>
 <h1>Class materials</h1>
-<p class="lede">Sixteen weeks, two sessions a week. Each week has its own page and its own password. Your teacher gives you the password when the class reaches that week.</p>
-<p class="group">Opening · Week 1</p>
-<ul class="cards">${weekCards(1, 1)}</ul>
-<p class="group">${esc(parts[1])} · Weeks 2–8</p>
-<ul class="cards">${weekCards(2, 8)}</ul>
-<p class="group">Midpoint · Week 9</p>
-<ul class="cards">${weekCards(9, 9)}</ul>
-<p class="group">${esc(parts[2])} · Weeks 10–14</p>
-<ul class="cards">${weekCards(10, 14)}</ul>
-<p class="group">Plan and present · Weeks 15–16</p>
-<ul class="cards">${weekCards(15, 16)}</ul>
+<p class="lede">Sixteen weeks, two sessions a week: 32 sessions. Each session has its own page and its own password. Your teacher gives you the password when the class reaches that session.</p>
+<p class="part">Opening · Week 1</p>
+${weekBlock(1, 1)}
+<p class="part">${esc(parts[1])} · Weeks 2–8</p>
+${weekBlock(2, 8)}
+<p class="part">Midpoint · Week 9</p>
+${weekBlock(9, 9)}
+<p class="part">${esc(parts[2])} · Weeks 10–14</p>
+${weekBlock(10, 14)}
+<p class="part">Plan and present · Weeks 15–16</p>
+${weekBlock(15, 16)}
 `,
 }));
-for (const w of weeks) {
-  write(`/class/${w.slug}/`, page({
-    path: `/class/${w.slug}/`,
-    title: `Week ${w.n}: ${w.title}`,
+for (const x of classSessions) {
+  const w = x.week;
+  write(`/class/${x.slug}/`, page({
+    path: `/class/${x.slug}/`,
+    title: `Session ${x.n}: ${x.title}`,
     area: "class",
     body: `
-<p class="kicker">The class · Week ${w.n} · ${esc(w.sessions)}</p>
-<h1>${esc(w.title)}</h1>
-<p class="lede">${esc(w.focus)}</p>
+<p class="kicker">The class · Week ${w.n} · Session ${x.half} · Session ${x.n} of 32</p>
+<h1>${esc(x.title)}</h1>
+<p class="lede">One word: ${esc(x.word)}</p>
 <article class="book-body">
-<h2>This week</h2>
+<h2>Today</h2>
+<p>${esc(x.plan)}</p>
 <div class="table-wrap"><table>
 <tbody>
-<tr><th scope="row">Session A word</th><td>${esc(w.words[0])}</td></tr>
-<tr><th scope="row">Session B word</th><td>${esc(w.words[1])}</td></tr>
-<tr><th scope="row">Story</th><td>${esc(w.story)}</td></tr>
-<tr><th scope="row">Read</th><td>${readLink(w.read)}${w.n === 9 ? " (and look back at your Problem Map)" : ""}</td></tr>
-${w.card ? `<tr><th scope="row">Chaos card</th><td>Yes. Expect one this week.</td></tr>` : ""}
+<tr><th scope="row">Week</th><td>${w.n}: ${esc(w.focus)}</td></tr>
+<tr><th scope="row">Word</th><td>${esc(x.word)}</td></tr>
+<tr><th scope="row">Read</th><td>${readLink(w.read)}</td></tr>
+${x.phrase ? `<tr><th scope="row">Phrase to discuss</th><td>Phrase ${x.phrase[0]}: "${esc(x.phrase[1])}" (in <a href="/book/part-3/">Part 3</a>)</td></tr>` : ""}
+${x.card ? `<tr><th scope="row">Chaos card</th><td>Yes. Expect one today.</td></tr>` : ""}
+${x.log ? `<tr><th scope="row">Chaos log</th><td>Add one entry before you leave.</td></tr>` : ""}
 </tbody>
 </table></div>
-<h2>Your team's work</h2>
-<p>${esc(w.team)}</p>
-<h2>Every session</h2>
+<h2>The session</h2>
 <p>Warm-up quiz and one word (10 minutes) · the story and the ideas (15) · class exercise (30) · group work (25) · discussion and exit question on your phone (10).</p>
 <h2>Materials</h2>
-<div class="placeholder">Slides, handouts, the quiz and the exit question for Week ${w.n} are posted here when the week opens.</div>
+<div class="placeholder">Slides, handouts, the quiz and the exit question for Session ${x.n} are posted here when the session opens.</div>
 <p class="small">The reading page has its own password, given in class.</p>
 </article>
-${pager("class", classOrder, classLabel, w.slug)}
+${pager("class", classOrder, classLabel, x.slug)}
 ${lockLink("class")}
 `,
   }));
