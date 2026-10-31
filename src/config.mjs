@@ -198,6 +198,28 @@ const materials = {
     ],
     source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Section 01, Part 3 and Part 5). Son of a Botanist Productions. https://starvechaos.com · Porter, M. E. (1996). What is strategy? <em>Harvard Business Review, 74</em>(6), 61–78. https://hbr.org/1996/11/what-is-strategy · Van den Steen, E. (2017). A formal theory of strategy. <em>Management Science, 63</em>(8), 2616–2636. https://doi.org/10.1287/mnsc.2016.2468 · Collis, D. J., &amp; Rukstad, M. G. (2008). Can you say what your strategy is? <em>Harvard Business Review, 86</em>(4), 82–90. https://hbr.org/2008/04/can-you-say-what-your-strategy-is · Bezos, J. P. (2016). <em>2015 letter to shareholders</em> [Form 8-K Exhibit 99.1]. Amazon.com, Inc. U.S. Securities and Exchange Commission. https://www.sec.gov/Archives/edgar/data/1018724/000119312516530910/d168744dex991.htm · Bezos, J. P. (2017, April 17). <em>2016 letter to shareholders</em>. Amazon. https://www.aboutamazon.com/news/company-news/2016-letter-to-shareholders",
   },
+  5: {
+    steps: [
+      { what: "Warm-up quiz", href: "/class/session-05/quiz/?q=S05-warmup", note: "On your phone. Type the code from the screen. Not graded." },
+      { what: "The lesson: getting on early", href: "/class/session-05/slides/", note: "Slides. The first half of the Amazon story and three rules about where opportunities hide." },
+      { what: "Class exercise and group work: Break one rule", href: "/class/session-05/exercise/", note: "Slides. List the rules of taxis and transport, break one, describe the new business. Then box 3 of your Problem Map, second draft.", extra: { label: "Open the exercise sheet", href: "/class/session-05/sheet/", pdf: "/class/session-05/sheet.pdf" } },
+      { what: "Session 5 quiz", href: "/class/session-05/quiz/?q=S05-quiz", note: "On your phone. Ten graded questions on today." },
+      { what: "Exit question", href: "/class/session-05/quiz/?q=S05-exit", note: "On your phone, before you leave." },
+    ],
+    read: { what: "Read Section 02", href: "/book/02/", note: "Rules 16, 18 and 21. It has its own password." },
+    homework: [
+      "Read Rules 16, 18 and 21 in Section 02. For each one, write one business in your city it reminds you of.",
+      "Watch one workaround people in your city use: something they fix, carry or put together themselves. Write it down for Session 6.",
+      "Map keepers: keep box 3, second draft, and your team's chosen rule for Session 6.",
+      "Chaos-log keepers: add one new entry to your team's chaos log.",
+    ],
+    final: [
+      "What is the opportunity: the need, the buyer who will pay, and your way to meet it?",
+      "Which rule does everyone in your team's industry follow without asking why? Which one will your idea break?",
+      "What is changing right now, so the rules are still being written?",
+    ],
+    source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Section 02 and Part 5). Son of a Botanist Productions. https://starvechaos.com · von Hippel, E. (1986). Lead users: A source of novel product concepts. <em>Management Science, 32</em>(7), 791–805. https://doi.org/10.1287/mnsc.32.7.791 · Haas, M. R. (2010). The double-edged swords of autonomy and external knowledge: Analyzing team effectiveness in a multinational organization. <em>Academy of Management Journal, 53</em>(5), 989–1008. https://doi.org/10.5465/amj.2010.54533180",
+  },
 };
 const sessionWords = ["Entrepreneurship","Chaos","Owner","Strategy","Opportunity","Gap","Resources","Bootstrapping","Bet","Scenario","Question","Evidence","Failure","Pivot","Focus","Priority","Feedback","Hypothesis","Sale","Channel","Margin","Runway","Team","Conflict","Bottleneck","System","Product","Prototype","Plan","Rehearsal","Pitch","Starve"];
 export const classSessions = [];
