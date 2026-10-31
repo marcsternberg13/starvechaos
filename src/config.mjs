@@ -243,6 +243,27 @@ const materials = {
     ],
     source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Section 02 and Part 5). Son of a Botanist Productions. https://starvechaos.com",
   },
+  8: {
+    steps: [
+      { what: "Warm-up quiz", href: "/class/session-08/quiz/?q=S08-warmup", note: "On your phone. Type the code from the screen. Not graded." },
+      { what: "The lesson: the season the others skipped", href: "/class/session-08/slides/", note: "Slides. The second half of the landscaping story, three rules and one phrase to watch." },
+      { what: "Class exercise and group work: The budget game", href: "/class/session-08/exercise/", note: "Slides. A phone repair stall with 3,000 units of money: spend big on one thing, cut the rest, test each cut. Then box 5 of your Problem Map and a test by hand.", extra: { label: "Open the exercise sheet", href: "/class/session-08/sheet/", pdf: "/class/session-08/sheet.pdf" } },
+      { what: "Session 8 quiz", href: "/class/session-08/quiz/?q=S08-quiz", note: "On your phone. Ten graded questions on today." },
+      { what: "Exit question", href: "/class/session-08/quiz/?q=S08-exit", note: "On your phone, before you leave." },
+    ],
+    read: false,
+    homework: [
+      "Run your team's cheapest test this week, by hand, outside class. Spend no more than your test allows.",
+      "Map keepers: write what happened in box 5 of the Problem Map, in one line, for Session 9.",
+      "Chaos-log keepers: add one new entry to your team's chaos log.",
+    ],
+    final: [
+      "What is the smallest first step you can afford?",
+      "What is the one thing your business will spend big on? Where will the customer feel it most?",
+      "Which costs could you cut that no customer would notice?",
+    ],
+    source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Section 03, Part 3 and Part 5). Son of a Botanist Productions. https://starvechaos.com · Acar, O. A., Tarakci, M., &amp; van Knippenberg, D. (2019). Creativity and innovation under constraints: A cross-disciplinary integrative review. <em>Journal of Management, 45</em>(1), 96–121. https://doi.org/10.1177/0149206318805832 · Sarasvathy, S. D. (2001). Causation and effectuation: Toward a theoretical shift from economic inevitability to entrepreneurial contingency. <em>Academy of Management Review, 26</em>(2), 243–263. https://doi.org/10.5465/amr.2001.4378020 · Briody, B. (2018, June 21). <em>Sara Blakely: Start small, think big, scale fast</em>. Stanford Graduate School of Business. https://www.gsb.stanford.edu/insights/sara-blakely-start-small-think-big-scale-fast · Baker, T., &amp; Nelson, R. E. (2005). Creating something from nothing: Resource construction through entrepreneurial bricolage. <em>Administrative Science Quarterly, 50</em>(3), 329–366. https://doi.org/10.2189/asqu.2005.50.3.329",
+  },
 };
 const sessionWords = ["Entrepreneurship","Chaos","Owner","Strategy","Opportunity","Gap","Resources","Bootstrapping","Bet","Scenario","Question","Evidence","Failure","Pivot","Focus","Priority","Feedback","Hypothesis","Sale","Channel","Margin","Runway","Team","Conflict","Bottleneck","System","Product","Prototype","Plan","Rehearsal","Pitch","Starve"];
 export const classSessions = [];
