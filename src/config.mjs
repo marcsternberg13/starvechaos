@@ -43,13 +43,15 @@ export const parts = {
 // Course week for each section: 01–07 = Weeks 2–8; 08–12 = Weeks 10–14 (Week 9 is the midpoint pitch).
 export const weekOf = (slug) => { const n = Number(slug); return n <= 7 ? n + 1 : n + 2; };
 
-// The book's five parts, in reading order. Part 2 = the 12 sections above.
+// The book's six parts, in reading order. Part 2 = the 12 sections above.
 // gate: "code" = its own password, "admin" = Marc's master password only, "open" = no password.
 export const bookParts = {
   "part-1": { label: "Part 1", title: "Starve Chaos", line: "The lemonade stand, the three forces and two definitions.", when: "Week 1", gate: "code" },
   "part-3": { label: "Part 3", title: "Ten Phrases to Watch Out For", line: "Common sayings every founder hears, and why each one misleads.", when: "Read alongside the sections", gate: "code" },
   "part-4": { label: "Part 4", title: "Conclusion", line: "What starving chaos looks like on a Monday.", when: "Weeks 15–16", gate: "code" },
   "part-5": { label: "Part 5", title: "How It's Taught", line: "The course design: sessions, team project, pitches.", when: "For teachers", gate: "admin" },
+  // Part 6 is built from the rule headings in the section pages (no content file), see build.mjs.
+  rules: { label: "Part 6", title: "101 Rules", line: "List of all the rules.", when: "Open to all", gate: "open" },
   back: { label: "Back of the book", title: "Indexes, References and More", line: "Force and big-idea indexes, references and acknowledgments.", when: "Open to all", gate: "open" },
 };
 

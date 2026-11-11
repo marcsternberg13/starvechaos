@@ -109,7 +109,7 @@ const sectionCards = (area, p) =>
     card(`/${area}/${s.slug}/`, s.slug, s.title, `Week ${weekOf(s.slug)} · Rules ${s.rules}`)).join("");
 
 // Reading order of the book, used for prev/next links.
-const bookOrder = ["part-1", ...sections.map((s) => s.slug), "part-3", "part-4", "part-5", "back"];
+const bookOrder = ["part-1", ...sections.map((s) => s.slug), "part-3", "part-4", "part-5", "rules", "back"];
 const bookLabel = (slug) => bookParts[slug] ? `${bookParts[slug].label}: ${bookParts[slug].title}` : `Section ${slug}: ${sections.find((s) => s.slug === slug).title}`;
 const classOrder = classSessions.map((x) => x.slug);
 const classLabel = (slug) => { const x = classSessions.find((y) => y.slug === slug); return `Session ${x.n}: ${x.title}`; };
@@ -125,28 +125,72 @@ ${next ? `<a class="btn ghost" href="/${area}/${next}/">${esc(label(next))} →<
 const lockLink = (area) => `<p style="margin-top:24px"><a href="/api/logout?next=/${area}/">Lock this device</a></p>`;
 
 // ----- Book index
-const bp = (slug) => card(`/book/${slug}/`, bookParts[slug].label.replace("Part ", ""), bookParts[slug].title, `${bookParts[slug].when} · ${bookParts[slug].line}`, bookParts[slug].gate);
+// Card numbers carry on after the 12 sections: Part 3 = 13, Part 4 = 14, Part 5 = 15.
+const partNum = { "part-1": "1", "part-3": "13", "part-4": "14", "part-5": "15", rules: "+" };
+const bp = (slug) => {
+  const b = bookParts[slug];
+  const theme = b.gate === "open" ? b.line : `${b.when} · ${b.line}`;
+  return card(`/book/${slug}/`, partNum[slug], b.title, theme, b.gate);
+};
 write("/book/", page({
   path: "/book/",
   title: "The book",
   body: `
 <p class="kicker">The book</p>
 <h1>${esc(site.bookTitle)}</h1>
-<p class="lede">Five parts, twelve sections, 101 rules. Each part and section has its own password, shared when the class reaches it.</p>
-<p class="part">Part 1 · Starve Chaos</p>
+<p class="lede">Six parts, twelve sections, 101 rules. Each part and section has its own password, shared when the class reaches it. The list of all 101 rules is open to everyone.</p>
+<h2 class="part-h">Part 1</h2>
 <ul class="cards">${bp("part-1")}</ul>
-<p class="part">Part 2 · The Rules</p>
+<h2 class="part-h">Part 2</h2>
 <p class="group">${esc(parts[1])} · Weeks 2–8</p>
 <ul class="cards">${sectionCards("book", 1)}</ul>
 <p class="group midnote">Week 9: midpoint pitch. No new reading.</p>
 <p class="group">${esc(parts[2])} · Weeks 10–14</p>
 <ul class="cards">${sectionCards("book", 2)}</ul>
-<p class="part">Parts 3 to 5</p>
-<ul class="cards">${bp("part-3")}${bp("part-4")}${bp("part-5")}</ul>
+<h2 class="part-h">Part 3</h2>
+<ul class="cards">${bp("part-3")}</ul>
+<h2 class="part-h">Part 4</h2>
+<ul class="cards">${bp("part-4")}</ul>
+<h2 class="part-h">Part 5</h2>
+<ul class="cards">${bp("part-5")}</ul>
+<h2 class="part-h">Part 6</h2>
+<ul class="cards">${bp("rules")}</ul>
 <p class="part">Back of the book</p>
 <ul class="cards">${card("/book/back/", "+", bookParts.back.title, bookParts.back.line, "open")}</ul>
 `,
 }));
+
+// ----- Part 6: all 101 rules on one open page, read from the rule headings in the section files.
+{
+  const rows = (slug) => {
+    const html = readFileSync(join("content", "book", `${slug}.html`), "utf8");
+    const re = /<div id="rule-(\d+)" class="rule">\s*<p><strong>\d+ · ([\s\S]*?)<\/strong>(?:\s*<em>([\s\S]*?)<\/em>)?/g;
+    const out = [];
+    let m;
+    while ((m = re.exec(html))) out.push(`<li><a class="rl" href="/book/${slug}/#rule-${m[1]}"><span class="rl-n">${m[1]}</span><span class="rl-t">${m[2].trim()}${m[3] ? `<span class="rl-f">${m[3].trim()}</span>` : ""}</span></a></li>`);
+    return out.join("");
+  };
+  const block = (s) => `<section class="rl-sec">
+<h2><a href="/book/${s.slug}/"><span class="rl-sn">${s.slug}</span> ${esc(s.title)}</a></h2>
+<p class="rl-meta">Rules ${esc(s.rules)} · ${esc(s.line)}</p>
+<ol class="rl-list">${rows(s.slug)}</ol>
+</section>`;
+  const b = bookParts.rules;
+  write("/book/rules/", page({
+    path: "/book/rules/",
+    title: `${b.label}: ${b.title}`,
+    body: `
+<p class="kicker">The book · ${esc(b.label)} · ${esc(b.when)}</p>
+<h1>${esc(b.title)}</h1>
+<p class="lede">Every rule in the book on one page, in order, with the forces each one draws on. Tap a rule to read it in its section (each section has its own password).</p>
+<p class="group">${esc(parts[1])}</p>
+${sections.filter((x) => x.part === 1).map(block).join("")}
+<p class="group">${esc(parts[2])}</p>
+${sections.filter((x) => x.part === 2).map(block).join("")}
+${pager("book", bookOrder, bookLabel, "rules")}
+`,
+  }));
+}
 
 // ----- Book pages: the 12 sections
 sections.forEach((s) => {
@@ -167,6 +211,7 @@ ${lockLink("book")}
 
 // ----- Book pages: Parts 1, 3, 4, 5 and the back of the book
 for (const [slug, b] of Object.entries(bookParts)) {
+  if (slug === "rules") continue; // Part 6 is built above
   write(`/book/${slug}/`, page({
     path: `/book/${slug}/`,
     title: `${b.label}: ${b.title}`,

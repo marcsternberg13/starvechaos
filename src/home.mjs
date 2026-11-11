@@ -277,7 +277,7 @@ export function homePage() {
 <section class="catalog">
 <div class="big101" aria-hidden="true">101</div>
 <div class="cat-head">
-<h2>101 rules.<br>12 sections.<br>Five parts.</h2>
+<h2>101 rules.<br>12 sections.<br>Six parts.</h2>
 <p>A dictionary of how builders think. Each rule is short, plain and backed by a real story or by research. Read it front to back, or open it anywhere.</p>
 </div>
 <div class="parts">
