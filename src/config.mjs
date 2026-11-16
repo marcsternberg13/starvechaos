@@ -253,8 +253,8 @@ const materials = {
   7: {
     steps: [
       { what: "Warm-up quiz", href: "/class/session-07/quiz/?q=S07-warmup", note: "On your phone. Type the code from the screen. Not graded." },
-      { what: "The lesson: cheap tools first", href: "/class/session-07/slides/", note: "Slides. The first half of the landscaping story and four rules about using what you already have." },
-      { what: "Class exercise and group work: The family asset inventory", href: "/class/session-07/exercise/", note: "Slides. A family with a car, a big kitchen and a cousin’s stall, and no new money: list every resource, combine them, pick a business. Then your team asset list. Then a chaos card.", extra: { label: "Open the exercise sheet", href: "/class/session-07/sheet/", pdf: "/class/session-07/sheet.pdf" } },
+      { what: "The lesson: cheap tools first", href: "/class/session-07/slides/", note: "Slides. The first half of the landscaping story, and two pairs: have, not want, and hand, then machine." },
+      { what: "Class exercise and group work: One family, no new money", href: "/class/session-07/exercise/", note: "Slides. A family with a car, a big kitchen and a cousin’s stall, and no new money: list every resource, combine them, pick a business. Then your team asset list: have, not want. Then a chaos card.", extra: { label: "Open the exercise sheet", href: "/class/session-07/sheet/", pdf: "/class/session-07/sheet.pdf" } },
       { what: "Session 7 quiz", href: "/class/session-07/quiz/?q=S07-quiz", note: "On your phone. Ten graded questions on today." },
       { what: "Exit question", href: "/class/session-07/quiz/?q=S07-exit", note: "On your phone, before you leave." },
     ],
