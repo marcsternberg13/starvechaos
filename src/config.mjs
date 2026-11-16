@@ -295,6 +295,28 @@ const materials = {
     ],
     source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Section 03, Part 3 and Part 5). Son of a Botanist Productions. https://starvechaos.com · Acar, O. A., Tarakci, M., &amp; van Knippenberg, D. (2019). Creativity and innovation under constraints: A cross-disciplinary integrative review. <em>Journal of Management, 45</em>(1), 96–121. https://doi.org/10.1177/0149206318805832 · Sarasvathy, S. D. (2001). Causation and effectuation: Toward a theoretical shift from economic inevitability to entrepreneurial contingency. <em>Academy of Management Review, 26</em>(2), 243–263. https://doi.org/10.5465/amr.2001.4378020 · Briody, B. (2018, June 21). <em>Sara Blakely: Start small, think big, scale fast</em>. Stanford Graduate School of Business. https://www.gsb.stanford.edu/insights/sara-blakely-start-small-think-big-scale-fast",
   },
+  9: {
+    steps: [
+      { what: "Warm-up quiz", href: "/class/session-09/quiz/?q=S09-warmup", note: "On your phone. Type the code from the screen. Not graded." },
+      { what: "The lesson: seven projects, one future", href: "/class/session-09/slides/", note: "Slides. The first half of Marc’s film story, and two pairs: test vs leap, and many vs different." },
+      { what: "Class exercise and group work: Three bets, or one?", href: "/class/session-09/exercise/", note: "Slides. A snack trader in your city plans three new products: map what each one depends on, find what they share, then redesign them so they fail for different reasons. Then your team’s bets and hours, and a chaos card.", extra: { label: "Open the exercise sheet", href: "/class/session-09/sheet/", pdf: "/class/session-09/sheet.pdf" } },
+      { what: "Session 9 quiz", href: "/class/session-09/quiz/?q=S09-quiz", note: "On your phone. Ten graded questions on today." },
+      { what: "Exit question", href: "/class/session-09/quiz/?q=S09-exit", note: "On your phone, before you leave." },
+    ],
+    timing: "Two hours: warm-up quiz and one word (15 minutes) · the story and the ideas (20) · class exercise (30) · break (5) · group work (25) · chaos card (10) · quiz on your phone (8) · exit question on your phone (7).",
+    read: { what: "Read Section 04", href: "/book/04/", note: "Rules 36 and 40. It has its own password." },
+    homework: [
+      "Read Rules 36 and 40 in Section 04. For each one, write one way it changes a bet your team is making.",
+      "Map keepers: keep your team’s list of bets and hours, with the two bets that share a cause, for Session 10.",
+      "Chaos-log keepers: keep today’s chaos-card entry in the log.",
+    ],
+    final: [
+      "What are your team’s bets? Name two that would not fail for the same reason.",
+      "What is the smallest test you can run while you still have your other work or studies?",
+      "What is improving fast in your idea? Which number shows it?",
+    ],
+    source: "Sternberg, M. (2026). <em>Hunger, curiosity &amp; chaos: 101 ways entrepreneurs think</em> (Section 04 and Part 5). Son of a Botanist Productions. https://starvechaos.com · Christensen, C. M. (1997). <em>The innovator’s dilemma: When new technologies cause great firms to fail</em>. Harvard Business School Press. · Knight, F. H. (1921). <em>Risk, uncertainty and profit</em>. Houghton Mifflin. · Markowitz, H. (1952). Portfolio selection. <em>The Journal of Finance, 7</em>(1), 77–91. https://doi.org/10.1111/j.1540-6261.1952.tb01525.x",
+  },
 };
 const sessionWords = ["Entrepreneurship","Chaos","Owner","Strategy","Opportunity","Gap","Resources","Bootstrapping","Bet","Scenario","Question","Evidence","Failure","Pivot","Focus","Priority","Feedback","Hypothesis","Sale","Channel","Margin","Runway","Team","Conflict","Bottleneck","System","Product","Prototype","Plan","Rehearsal","Pitch","Starve"];
 export const classSessions = [];
@@ -310,7 +332,7 @@ for (const w of weeks) {
         ? `The first half of the story, "${w.story}", and the section's main rules. Then use them on your team's problem.`
         : `The second half of the story, "${w.story}", and the remaining rules. Then more time on your team's project.`,
       phrase: phrases[n] || null,
-      card: [6, 10, 14, 20, 22, 26, 28].includes(n),
+      card: [6, 9, 10, 14, 20, 22, 26, 28].includes(n),
       log: half === "B" && n <= 28,
       materials: materials[n] || null,
     };
